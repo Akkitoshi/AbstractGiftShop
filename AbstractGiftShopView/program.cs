@@ -6,6 +6,7 @@ using System;
 using System.Windows.Forms;
 using Unity;
 using Unity.Lifetime;
+
 namespace AbstractShopView
 {
     static class Program

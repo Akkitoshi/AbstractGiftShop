@@ -1,6 +1,7 @@
 ﻿using AbstractGiftShopServiceDAL.BindingModels;
 using AbstractGiftShopServiceDAL.ViewModels;
 using System.Collections.Generic;
+
 namespace AbstractGiftShopServiceDAL.Interfaces
 {
     public interface IMainService

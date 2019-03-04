@@ -5,6 +5,7 @@ using AbstractGiftShopServiceDAL.ViewModels;
 using AbstractGiftShopServiceImplement;
 using System;
 using System.Collections.Generic;
+
 namespace AbstractShopServiceImplementList.Implementations
 {
     public class GiftServiceList : IGiftService

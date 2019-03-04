@@ -5,9 +5,6 @@ using AbstractGiftShopServiceDAL.ViewModels;
 using AbstractGiftShopServiceImplement;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AbstractGiftShopServiceImplementList.Implementations
 {
