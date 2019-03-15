@@ -1,4 +1,4 @@
-﻿using AbstractGiftShopModel;
+using AbstractGiftShopModel;
 using AbstractGiftShopServiceDAL.BindingModels;
 using AbstractGiftShopServiceDAL.Interfaces;
 using AbstractGiftShopServiceDAL.ViewModels;
@@ -103,7 +103,8 @@ namespace AbstractShopServiceImplementList.Implementations
             }
             element.DateImplement = DateTime.Now;
             element.Status = SOrderStatus.Выполняется;
-        }
+        }
+
         public void FinishOrder(SOrderBindingModel model)
         {
             SOrder element = source.SOrders.FirstOrDefault(rec => rec.Id == model.Id);
@@ -116,7 +117,8 @@ namespace AbstractShopServiceImplementList.Implementations
                 throw new Exception("Заказ не в статусе \"Выполняется\"");
             }
             element.Status = SOrderStatus.Готов;
-        }
+        }
+
         public void PayOrder(SOrderBindingModel model)
         {
             SOrder element = source.SOrders.FirstOrDefault(rec => rec.Id == model.Id);
@@ -152,4 +154,3 @@ namespace AbstractShopServiceImplementList.Implementations
             }
         }
     }
-}
