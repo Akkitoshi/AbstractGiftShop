@@ -15,5 +15,7 @@ namespace AbstractGiftShopModel
         public SOrderStatus Status { get; set; }
         public DateTime DateCreate { get; set; }
         public DateTime? DateImplement { get; set; }
+        public virtual SClient SClient { get; set; }
+        public virtual Gift Gift { get; set; }
     }
 }
