@@ -1,33 +1,34 @@
 ﻿using AbstractGiftShopServiceDAL.Interfaces;
-using AbstractGiftShopServiceDAL.ViewModels;
-using AbstractShopView;
+using AbstractGiftShopServiceDAL.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 using Unity;
 
-
-namespace AbstractgiftShopView
+namespace AbstractGiftShopView
 {
-    public partial class FormClients : Form
+    public partial class FormStocks : Form
     {
         [Dependency]
         public new IUnityContainer Container { get; set; }
-        private readonly ISClientService service;
-        public FormClients(ISClientService service)
+        private readonly ISStockService service;
+
+        public FormStocks(ISStockService service)
         {
             InitializeComponent();
             this.service = service;
         }
-        private void FormClients_Load(object sender, EventArgs e)
+
+        private void FormStocks_Load(object sender, EventArgs e)
         {
             LoadData();
         }
+
         private void LoadData()
         {
             try
             {
-                List<SClientViewModel> list = service.GetList();
+                List<SStockViewModel> list = service.GetList();
                 if (list != null)
                 {
                     dataGridView.DataSource = list;
@@ -42,25 +43,11 @@ namespace AbstractgiftShopView
                MessageBoxIcon.Error);
             }
         }
-        private void buttonAdd_Click(object sender, EventArgs e)
-        {
-            var form = Container.Resolve<FormClient>();
-            if (form.ShowDialog() == DialogResult.OK)
-            {
-                LoadData();
-            }
-        }
+
+
         private void buttonUpd_Click(object sender, EventArgs e)
         {
-            if (dataGridView.SelectedRows.Count == 1)
-            {
-                var form = Container.Resolve<FormClient>();
-                form.Id = Convert.ToInt32(dataGridView.SelectedRows[0].Cells[0].Value);
-                if (form.ShowDialog() == DialogResult.OK)
-                {
-                    LoadData();
-                }
-            }
+            LoadData();
         }
         private void buttonDel_Click(object sender, EventArgs e)
         {
@@ -78,15 +65,33 @@ namespace AbstractgiftShopView
                     catch (Exception ex)
                     {
                         MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK,
-MessageBoxIcon.Error);
+                       MessageBoxIcon.Error);
                     }
                     LoadData();
                 }
             }
         }
+
+        private void buttonAdd_Click(object sender, EventArgs e)
+        {
+            FormStock form = Container.Resolve<FormStock>();
+            if (form.ShowDialog() == DialogResult.OK)
+            {
+                LoadData();
+            }
+        }
+
         private void buttonRef_Click(object sender, EventArgs e)
         {
-            LoadData();
+            if (dataGridView.SelectedRows.Count == 1)
+            {
+                var form = Container.Resolve<FormStock>();
+                form.Id = Convert.ToInt32(dataGridView.SelectedRows[0].Cells[0].Value);
+                if (form.ShowDialog() == DialogResult.OK)
+                {
+                    LoadData();
+                }
+            }
         }
     }
 }

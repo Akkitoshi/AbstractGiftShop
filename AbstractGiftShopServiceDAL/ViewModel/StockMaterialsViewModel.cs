@@ -1,13 +1,13 @@
 ﻿using System.ComponentModel;
 
-namespace AbstractGiftShopServiceDAL.ViewModels
+namespace AbstractGiftShopServiceDAL.ViewModel
 {
-    public class GiftMaterialsViewModel
+    public class StockMaterialsViewModel
     {
         public int Id { get; set; }
-        public int GiftId { get; set; }
+        public int SStockId { get; set; }
         public int MaterialsId { get; set; }
-        [DisplayName("Материал")]
+        [DisplayName("Название материала")]
         public string MaterialsName { get; set; }
         [DisplayName("Количество")]
         public int Count { get; set; }

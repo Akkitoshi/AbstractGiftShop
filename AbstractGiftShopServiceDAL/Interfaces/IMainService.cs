@@ -1,6 +1,7 @@
 ﻿using AbstractGiftShopServiceDAL.BindingModels;
 using AbstractGiftShopServiceDAL.ViewModels;
 using System.Collections.Generic;
+
 namespace AbstractGiftShopServiceDAL.Interfaces
 {
     public interface IMainService
@@ -10,5 +11,6 @@ namespace AbstractGiftShopServiceDAL.Interfaces
         void TakeOrderInWork(SOrderBindingModel model);
         void FinishOrder(SOrderBindingModel model);
         void PayOrder(SOrderBindingModel model);
+        void PutMaterialsOnStock(StockMaterialsBindingModel model);
     }
 }

@@ -1,35 +1,41 @@
 ﻿using AbstractGiftShopServiceDAL.BindingModels;
 using AbstractGiftShopServiceDAL.Interfaces;
-using AbstractGiftShopServiceDAL.ViewModels;
+using AbstractGiftShopServiceDAL.ViewModel;
 using System;
 using System.Windows.Forms;
 using Unity;
 
-
 namespace AbstractGiftShopView
 {
-    public partial class FormMaterial : Form
+    public partial class FormStock : Form
     {
+
         [Dependency]
         public new IUnityContainer Container { get; set; }
         public int Id { set { id = value; } }
-        private readonly IMaterialsService service;
+        private readonly ISStockService service;
         private int? id;
-        public FormMaterial(IMaterialsService service)
+        public FormStock(ISStockService service)
         {
             InitializeComponent();
             this.service = service;
         }
-        private void FormMaterial_Load(object sender, EventArgs e)
+        private void FormStock_Load(object sender, EventArgs e)
         {
             if (id.HasValue)
             {
                 try
                 {
-                    MaterialsViewModel view = service.GetElement(id.Value);
+                    SStockViewModel view = service.GetElement(id.Value);
                     if (view != null)
                     {
-                        textBoxName.Text = view.MaterialsName;
+                        textBoxName.Text = view.SStockName;
+                        dataGridView.DataSource = view.StockMaterialss;
+                        dataGridView.Columns[0].Visible = false;
+                        dataGridView.Columns[1].Visible = false;
+                        dataGridView.Columns[2].Visible = false;
+                        dataGridView.Columns[3].AutoSizeMode =
+                       DataGridViewAutoSizeColumnMode.Fill;
                     }
                 }
                 catch (Exception ex)
@@ -39,6 +45,7 @@ namespace AbstractGiftShopView
                 }
             }
         }
+
         private void buttonSave_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(textBoxName.Text))
@@ -51,17 +58,17 @@ namespace AbstractGiftShopView
             {
                 if (id.HasValue)
                 {
-                    service.UpdElement(new MaterialsBindingModel
+                    service.UpdElement(new SStockBindingModel
                     {
                         Id = id.Value,
-                        MaterialsName = textBoxName.Text
+                        SStockName = textBoxName.Text
                     });
                 }
                 else
                 {
-                    service.AddElement(new MaterialsBindingModel
+                    service.AddElement(new SStockBindingModel
                     {
-                        MaterialsName = textBoxName.Text
+                        SStockName = textBoxName.Text
                     });
                 }
                 MessageBox.Show("Сохранение прошло успешно", "Сообщение",
@@ -75,10 +82,12 @@ namespace AbstractGiftShopView
                MessageBoxIcon.Error);
             }
         }
-        private void buttonCancel_Click(object sender, EventArgs e)
+        private void ButtonCancel_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.Cancel;
             Close();
         }
+
     }
+
 }
