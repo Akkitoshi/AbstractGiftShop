@@ -45,7 +45,7 @@ namespace AbstractGiftShopView
         }
 
 
-        private void buttonUpd_Click(object sender, EventArgs e)
+        private void buttonRef_Click(object sender, EventArgs e)
         {
             LoadData();
         }
@@ -81,7 +81,7 @@ namespace AbstractGiftShopView
             }
         }
 
-        private void buttonRef_Click(object sender, EventArgs e)
+        private void buttonUpd_Click(object sender, EventArgs e)
         {
             if (dataGridView.SelectedRows.Count == 1)
             {
