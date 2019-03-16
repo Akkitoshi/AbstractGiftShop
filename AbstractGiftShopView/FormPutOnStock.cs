@@ -1,0 +1,103 @@
+﻿using AbstractGiftShopServiceDAL.BindingModels;
+using AbstractGiftShopServiceDAL.Interfaces;
+using AbstractGiftShopServiceDAL.ViewModel;
+using AbstractGiftShopServiceDAL.ViewModels;
+using System;
+using System.Collections.Generic;
+using System.Windows.Forms;
+using Unity;
+
+namespace AbstractGiftShopView
+{
+    public partial class FormPutOnStock : Form
+    {
+        [Dependency]
+        public new IUnityContainer Container { get; set; }
+        private readonly ISStockService serviceS;
+        private readonly IMaterialsService serviceC;
+        private readonly IMainService serviceM;
+        public FormPutOnStock(ISStockService serviceS, IMaterialsService serviceC,
+       IMainService serviceM)
+        {
+            InitializeComponent();
+            this.serviceS = serviceS;
+            this.serviceC = serviceC;
+            this.serviceM = serviceM;
+        }
+
+        private void FormPutOnStock_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                List<MaterialsViewModel> listC = serviceC.GetList();
+                if (listC != null)
+                {
+                    comboBoxMaterials.DisplayMember = "MaterialsName";
+                    comboBoxMaterials.ValueMember = "Id";
+                    comboBoxMaterials.DataSource = listC;
+                    comboBoxMaterials.SelectedItem = null;
+                }
+                List<SStockViewModel> listS = serviceS.GetList();
+                if (listS != null)
+                {
+                    comboBoxStock.DisplayMember = "SStockName";
+                    comboBoxStock.ValueMember = "Id";
+                    comboBoxStock.DataSource = listS;
+                    comboBoxStock.SelectedItem = null;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK,
+               MessageBoxIcon.Error);
+            }
+        }
+
+        private void buttonSave_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(textBoxCount.Text))
+            {
+                MessageBox.Show("Заполните поле Количество", "Ошибка",
+               MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            if (comboBoxMaterials.SelectedValue == null)
+            {
+                MessageBox.Show("Выберите материалы", "Ошибка", MessageBoxButtons.OK,
+               MessageBoxIcon.Error);
+                return;
+            }
+            if (comboBoxStock.SelectedValue == null)
+            {
+                MessageBox.Show("Выберите склад", "Ошибка", MessageBoxButtons.OK,
+               MessageBoxIcon.Error);
+                return;
+            }
+            try
+            {
+                serviceM.PutMaterialsOnStock(new StockMaterialsBindingModel
+                {
+                    MaterialsId = Convert.ToInt32(comboBoxMaterials.SelectedValue),
+                   SStockId = Convert.ToInt32(comboBoxStock.SelectedValue),
+                    Count = Convert.ToInt32(textBoxCount.Text)
+                });
+                MessageBox.Show("Сохранение прошло успешно", "Сообщение",
+               MessageBoxButtons.OK, MessageBoxIcon.Information);
+                DialogResult = DialogResult.OK;
+                Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK,
+               MessageBoxIcon.Error);
+            }
+        }
+        private void buttonCancel_Click(object sender, EventArgs e)
+        {
+            DialogResult = DialogResult.Cancel;
+            Close();
+        }
+
+    }
+
+}

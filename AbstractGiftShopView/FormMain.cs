@@ -118,6 +118,18 @@ namespace AbstractGiftShopView
             LoadData();
         }
 
+        private void CкладыToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var form = Container.Resolve<FormStocks>();
+            form.ShowDialog();
+        }
+
+        private void ПополнитьСкладToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var form = Container.Resolve<FormPutOnStock>();
+            form.ShowDialog();
+        }
+
         private void FormMain_Load(object sender, EventArgs e)
         {
             LoadData();

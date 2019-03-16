@@ -46,6 +46,7 @@
     <Compile Include="DataListSingleton.cs" />
     <Compile Include="Implementations\GiftServiceList.cs" />
     <Compile Include="Implementations\MaterialsServiceList.cs" />
+    <Compile Include="Implementations\SStockServiceList.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

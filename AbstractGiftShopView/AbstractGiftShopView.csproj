@@ -112,8 +112,26 @@
     <Compile Include="FormMaterials.Designer.cs">
       <DependentUpon>FormMaterials.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormPutOnStock.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormPutOnStock.Designer.cs">
+      <DependentUpon>FormPutOnStock.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormStock.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormStock.Designer.cs">
+      <DependentUpon>FormStock.cs</DependentUpon>
+    </Compile>
     <Compile Include="program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="FormStocks.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormStocks.Designer.cs">
+      <DependentUpon>FormStocks.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="FormClient.resx">
       <DependentUpon>FormClient.cs</DependentUpon>
     </EmbeddedResource>
@@ -141,6 +159,15 @@
     <EmbeddedResource Include="FormMaterials.resx">
       <DependentUpon>FormMaterials.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormPutOnStock.resx">
+      <DependentUpon>FormPutOnStock.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormStock.resx">
+      <DependentUpon>FormStock.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormStocks.resx">
+      <DependentUpon>FormStocks.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -156,6 +183,8 @@
     <None Include="Properties\DataSources\AbstractGiftShopServiceDAL.BindingModels.GiftMaterialsBindingModel.datasource" />
     <None Include="Properties\DataSources\AbstractGiftShopServiceDAL.BindingModels.MaterialsBindingModel.datasource" />
     <None Include="Properties\DataSources\AbstractGiftShopServiceDAL.BindingModels.SClientBindingModel.datasource" />
+    <None Include="Properties\DataSources\AbstractGiftShopServiceDAL.BindingModels.SStockBindingModel.datasource" />
+    <None Include="Properties\DataSources\AbstractGiftShopServiceDAL.BindingModels.StockMaterialsBindingModel.datasource" />
     <None Include="Properties\DataSources\AbstractgiftShopView.FormClients.datasource" />
     <None Include="Properties\DataSources\AbstractGiftShopView.Properties.Resources.datasource" />
     <None Include="Properties\DataSources\AbstractGiftShopView.Properties.Settings.datasource" />

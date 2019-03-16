@@ -1,119 +1,79 @@
-﻿using AbstractGiftShopModel;
+using AbstractGiftShopModel;
 using AbstractGiftShopServiceDAL.BindingModels;
 using AbstractGiftShopServiceDAL.Interfaces;
 using AbstractGiftShopServiceDAL.ViewModels;
 using AbstractGiftShopServiceImplement;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace AbstractShopServiceImplementList.Implementations
 {
     public class GiftServiceList : IGiftService
     {
         private DataListSingleton source;
-
         public GiftServiceList()
         {
             source = DataListSingleton.GetInstance();
         }
         public List<GiftViewModel> GetList()
         {
-            List<GiftViewModel> result = new List<GiftViewModel>();
-            for (int i = 0; i < source.Gifts.Count; ++i)
+            List<GiftViewModel> result = source.Gifts
+            .Select(rec => new GiftViewModel
             {
-                // требуется дополнительно получить список материалов для подарка и их  количество
-            List<GiftMaterialsViewModel> giftMaterialss = new List<GiftMaterialsViewModel>();
-                for (int j = 0; j < source.GiftMaterialss.Count; ++j)
+                Id = rec.Id,
+                GiftName = rec.GiftName,
+                Price = rec.Price,
+                GiftMaterials = source.GiftMaterialss.Where(recPC => recPC.GiftId == rec.Id)
+                .Select(recPC => new GiftMaterialsViewModel
                 {
-                    if (source.GiftMaterialss[j].GiftId == source.Gifts[i].Id)
-                    {
-                        string materialsName = string.Empty;
-                        for (int k = 0; k < source.Materialss.Count; ++k)
-                        {
-                            if (source.GiftMaterialss[j].MaterialsId ==
-                           source.Materialss[k].Id)
-                            {
-                                materialsName = source.Materialss[k].MaterialsName;
-                                break;
-                            }
-                        }
-                        giftMaterialss.Add(new GiftMaterialsViewModel
-                        {
-                            Id = source.GiftMaterialss[j].Id,
-                        GiftId = source.GiftMaterialss[j].GiftId,
-                            MaterialsId = source.GiftMaterialss[j].MaterialsId,
-                            MaterialsName = materialsName,
-                            Count = source.GiftMaterialss[j].Count
-                        });
-                    }
-                }
-                result.Add(new GiftViewModel
-                {
-                    Id = source.Gifts[i].Id,
-                    GiftName = source.Gifts[i].GiftName,
-                    Price = source.Gifts[i].Price,
-                    GiftMaterials = giftMaterialss
-                });
-            }
+                    Id = recPC.Id,
+                    GiftId = recPC.GiftId,
+                    MaterialsId = recPC.MaterialsId,
+                    MaterialsName = source.Materialss.FirstOrDefault(recC => recC.Id == recPC.MaterialsId)?.MaterialsName,
+                    Count = recPC.Count
+                })
+                .ToList()
+            })
+            .ToList();
             return result;
         }
         public GiftViewModel GetElement(int id)
         {
-            for (int i = 0; i < source.Gifts.Count; ++i)
+            Gift element = source.Gifts.FirstOrDefault(rec => rec.Id == id);
+            if (element != null)
             {
-                // требуется дополнительно получить список компонентов для изделия и их количество
-            List<GiftMaterialsViewModel> giftMaterialss = new List<GiftMaterialsViewModel>();
-                for (int j = 0; j < source.GiftMaterialss.Count; ++j)
+                return new GiftViewModel
                 {
-                    if (source.GiftMaterialss[j].GiftId == source.Gifts[i].Id)
-                    {
-                        string materialsName = string.Empty;
-                        for (int k = 0; k < source.Materialss.Count; ++k)
-                        {
-                            if (source.GiftMaterialss[j].MaterialsId ==
-                           source.Materialss[k].Id)
-                            {
-                                materialsName = source.Materialss[k].MaterialsName;
-                                break;
-                            }
-                        }
-                        giftMaterialss.Add(new GiftMaterialsViewModel
-                        {
-                            Id = source.GiftMaterialss[j].Id,
-                            GiftId = source.GiftMaterialss[j].GiftId,
-                            MaterialsId = source.GiftMaterialss[j].MaterialsId,
-                            MaterialsName = materialsName,
-                            Count = source.GiftMaterialss[j].Count
-                        });
-                    }
-                }
-                if (source.Gifts[i].Id == id)
+                    Id = element.Id,
+                    GiftName = element.GiftName,
+                    Price = element.Price,
+                    GiftMaterials = source.GiftMaterialss
+                .Where(recPC => recPC.GiftId == element.Id)
+                .Select(recPC => new GiftMaterialsViewModel
                 {
-                    return new GiftViewModel
-                    {
-                        Id = source.Gifts[i].Id,
-                        GiftName = source.Gifts[i].GiftName,
-                        Price = source.Gifts[i].Price,
-                        GiftMaterials = giftMaterialss
-                    };
-                }
+                    Id = recPC.Id,
+                    GiftId = recPC.GiftId,
+                    MaterialsId = recPC.MaterialsId,
+                    MaterialsName = source.Materialss.FirstOrDefault(recC =>
+ recC.Id == recPC.MaterialsId)?.MaterialsName,
+                    Count = recPC.Count
+                })
+                .ToList()
+                };
             }
             throw new Exception("Элемент не найден");
         }
- public void AddElement(GiftBindingModel model)
+        public void AddElement(GiftBindingModel model)
         {
-            int maxId = 0;
-            for (int i = 0; i < source.Gifts.Count; ++i)
+            Gift element = source.Gifts.FirstOrDefault(rec => rec.GiftName ==
+           model.GiftName);
+            if (element != null)
             {
-                if (source.Gifts[i].Id > maxId)
-                {
-                    maxId = source.Gifts[i].Id;
-                }
-                if (source.Gifts[i].GiftName == model.GiftName)
-                {
-                    throw new Exception("Уже есть подарок с таким названием");
-                }
+                throw new Exception("Уже есть подарок с таким названием");
             }
+            int maxId = source.Gifts.Count > 0 ? source.Gifts.Max(rec => rec.Id) :
+           0;
             source.Gifts.Add(new Gift
             {
                 Id = maxId + 1,
@@ -121,146 +81,99 @@ namespace AbstractShopServiceImplementList.Implementations
                 Price = model.Price
             });
             // материалы для подарка
-            int maxPCId = 0;
-            for (int i = 0; i < source.GiftMaterialss.Count; ++i)
-            {
-                if (source.GiftMaterialss[i].Id > maxPCId)
-                {
-                    maxPCId = source.GiftMaterialss[i].Id;
-                }
-            }
-            // убираем дубли по материалам
-            for (int i = 0; i < model.GiftMaterialss.Count; ++i)
-            {
-                for (int j = 1; j < model.GiftMaterialss.Count; ++j)
-                {
-                    if (model.GiftMaterialss[i].MaterialsId ==
-                    model.GiftMaterialss[j].MaterialsId)
-                    {
-                        model.GiftMaterialss[i].Count +=
-                        model.GiftMaterialss[j].Count;
-                        model.GiftMaterialss.RemoveAt(j--);
-                    }
-                }
-            }
-            // добавляем материалы
-            for (int i = 0; i < model.GiftMaterialss.Count; ++i)
+            int maxPCId = source.GiftMaterialss.Count > 0 ?
+           source.GiftMaterialss.Max(rec => rec.Id) : 0;
+            // убираем дубли по материалами
+            var groupMaterialss = model.GiftMaterialss
+            .GroupBy(rec => rec.MaterialsId)
+           .Select(rec => new
+           {
+               MaterialsId = rec.Key,
+               Count = rec.Sum(r => r.Count)
+           });
+            // добавляем компоненты
+            foreach (var groupMaterials in groupMaterialss)
             {
                 source.GiftMaterialss.Add(new GiftMaterials
                 {
                     Id = ++maxPCId,
                     GiftId = maxId + 1,
-                    MaterialsId = model.GiftMaterialss[i].MaterialsId,
-                    Count = model.GiftMaterialss[i].Count
+                    MaterialsId = groupMaterials.MaterialsId,
+                    Count = groupMaterials.Count
                 });
             }
         }
         public void UpdElement(GiftBindingModel model)
         {
-            int index = -1;
-            for (int i = 0; i < source.Gifts.Count; ++i)
+            Gift element = source.Gifts.FirstOrDefault(rec => rec.GiftName ==
+           model.GiftName && rec.Id != model.Id);
+            if (element != null)
             {
-                if (source.Gifts[i].Id == model.Id)
-                {
-                index = i;
-                }
-                if (source.Gifts[i].GiftName == model.GiftName &&
-                source.Gifts[i].Id != model.Id)
-                {
-                    throw new Exception("Уже есть подарок с таким названием");
-                }
+                throw new Exception("Уже есть подарок с таким названием");
             }
-            if (index == -1)
+            element = source.Gifts.FirstOrDefault(rec => rec.Id == model.Id);
+            if (element == null)
             {
                 throw new Exception("Элемент не найден");
             }
-            source.Gifts[index].GiftName = model.GiftName;
-            source.Gifts[index].Price = model.Price;
-            int maxPCId = 0;
-            for (int i = 0; i < source.GiftMaterialss.Count; ++i)
-            {
-                if (source.GiftMaterialss[i].Id > maxPCId)
-                {
-                    maxPCId = source.GiftMaterialss[i].Id;
-                }
-            }
+            element.GiftName = model.GiftName;
+            element.Price = model.Price;
+            int maxPCId = source.GiftMaterialss.Count > 0 ?
+           source.GiftMaterialss.Max(rec => rec.Id) : 0;
             // обновляем существуюущие материалы
-            for (int i = 0; i < source.GiftMaterialss.Count; ++i)
+            var matIds = model.GiftMaterialss.Select(rec =>
+           rec.MaterialsId).Distinct();
+            var updateMaterialss = source.GiftMaterialss.Where(rec => rec.GiftId ==
+           model.Id && matIds.Contains(rec.MaterialsId));
+            foreach (var updateMaterials in updateMaterialss)
             {
-                if (source.GiftMaterialss[i].GiftId == model.Id)
-                {
-                    bool flag = true;
-                    for (int j = 0; j < model.GiftMaterialss.Count; ++j)
-                    {
-                        // если встретили, то изменяем количество
-                        if (source.GiftMaterialss[i].Id ==
-                       model.GiftMaterialss[j].Id)
-                        {
-                            source.GiftMaterialss[i].Count =
-                           model.GiftMaterialss[j].Count;
-                            flag = false;
-                            break;
-                        }
-                    }
-                    // если не встретили, то удаляем
-                    if (flag)
-                    {
-                        source.GiftMaterialss.RemoveAt(i--);
-                    }
-                }
+                updateMaterials.Count = model.GiftMaterialss.FirstOrDefault(rec =>
+               rec.Id == updateMaterials.Id).Count;
             }
+            source.GiftMaterialss.RemoveAll(rec => rec.GiftId == model.Id &&
+           !matIds.Contains(rec.MaterialsId));
             // новые записи
-            for (int i = 0; i < model.GiftMaterialss.Count; ++i)
+            var groupMaterialss = model.GiftMaterialss
+            .Where(rec => rec.Id == 0)
+           .GroupBy(rec => rec.MaterialsId)
+           .Select(rec => new
+           {
+               MaterialsId = rec.Key,
+               Count = rec.Sum(r => r.Count)
+           });
+            foreach (var groupMaterials in groupMaterialss)
             {
-                if (model.GiftMaterialss[i].Id == 0)
+                GiftMaterials elementPC = source.GiftMaterialss.FirstOrDefault(rec
+               => rec.GiftId == model.Id && rec.MaterialsId == groupMaterials.MaterialsId);
+                if (elementPC != null)
                 {
-                    // ищем дубли
-                    for (int j = 0; j < source.GiftMaterialss.Count; ++j)
+                    elementPC.Count += groupMaterials.Count;
+                }
+                else
+                {
+                    source.GiftMaterialss.Add(new GiftMaterials
                     {
-                        if (source.GiftMaterialss[j].GiftId == model.Id &&
-                        source.GiftMaterialss[j].MaterialsId ==
-                       model.GiftMaterialss[i].MaterialsId)
-                        {
-                            source.GiftMaterialss[j].Count +=
-                           model.GiftMaterialss[i].Count;
-                            model.GiftMaterialss[i].Id =
-                           source.GiftMaterialss[j].Id;
-                            break;
-                        }
-                    }
-                    // если не нашли дубли, то новая запись
-                    if (model.GiftMaterialss[i].Id == 0)
-                    {
-                        source.GiftMaterialss.Add(new GiftMaterials
-                        {
-                            Id = ++maxPCId,
-                            GiftId = model.Id,
-                            MaterialsId = model.GiftMaterialss[i].MaterialsId,
-                            Count = model.GiftMaterialss[i].Count
-                        });
-                    }
+                        Id = ++maxPCId,
+                        GiftId = model.Id,
+                        MaterialsId = groupMaterials.MaterialsId,
+                        Count = groupMaterials.Count
+                    });
                 }
             }
         }
         public void DelElement(int id)
         {
-            // удаяем записи по материалам при удалении подарка
-            for (int i = 0; i < source.GiftMaterialss.Count; ++i)
+            Gift element = source.Gifts.FirstOrDefault(rec => rec.Id == id);
+            if (element != null)
             {
-                if (source.GiftMaterialss[i].GiftId == id)
-                {
-                    source.GiftMaterialss.RemoveAt(i--);
-                }
+                // удаяем записи по материалам при удалении подарка
+                source.GiftMaterialss.RemoveAll(rec => rec.GiftId == id);
+                source.Gifts.Remove(element);
             }
-            for (int i = 0; i < source.Gifts.Count; ++i)
+            else
             {
-                if (source.Gifts[i].Id == id)
-                {
-                    source.Gifts.RemoveAt(i);
-                    return;
-                }
+                throw new Exception("Элемент не найден");
             }
-            throw new Exception("Элемент не найден");
         }
     }
 }
