@@ -10,9 +10,11 @@ namespace AbstractGiftShopModel
     public class SClient
     {
         public int Id { get; set; }
+
         [Required]
         public string SClientFIO { get; set; }
+
         [ForeignKey("SClientId")]
-        public virtual List<SOrder> Orders { get; set; }
+        public virtual List<SOrder> SOrders { get; set; }
     }
 }

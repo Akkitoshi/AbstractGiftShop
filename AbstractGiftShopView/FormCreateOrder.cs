@@ -70,11 +70,11 @@ namespace AbstractGiftShopView
                 }
             }
         }
-        private void textBoxCount_TextChanged(object sender, EventArgs e)
+        private void textBoxCount_CountChanged(object sender, EventArgs e)
         {
             CalcSum();
         }
-        private void comboBoxGift_SelectedIndexChanged(object sender, EventArgs e)
+        private void comboBoxGift_SumChanged(object sender, EventArgs e)
         {
             CalcSum();
         }

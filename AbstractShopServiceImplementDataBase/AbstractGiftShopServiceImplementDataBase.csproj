@@ -53,9 +53,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AbstractDbContext.cs" />
+    <Compile Include="AbstractGiftShopDbContext.cs" />
+    <Compile Include="Implementations\GiftServiceDB.cs" />
+    <Compile Include="Implementations\MainServiceDB.cs" />
+    <Compile Include="Implementations\MaterialsServiceDB.cs" />
+    <Compile Include="Implementations\SClientServiceDB.cs" />
+    <Compile Include="Implementations\SStockServiceDB.cs" />
+    <Compile Include="Migrations\201904130320235_FirstMigration.cs" />
+    <Compile Include="Migrations\201904130320235_FirstMigration.Designer.cs">
+      <DependentUpon>201904130320235_FirstMigration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Migrations\201904130320235_FirstMigration.resx">
+      <DependentUpon>201904130320235_FirstMigration.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -77,12 +90,18 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AbstractGiftShopModel\AbstractGiftShopModel.csproj">
       <Project>{8f783248-6123-48aa-aaa3-027c7e89cb89}</Project>
       <Name>AbstractGiftShopModel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AbstractGiftShopServiceDAL\AbstractGiftShopServiceDAL.csproj">
+      <Project>{4C4BC1D9-62D7-46A8-A3A8-6477395C4059}</Project>
+      <Name>AbstractGiftShopServiceDAL</Name>
     </ProjectReference>
     <ProjectReference Include="..\AbstractGiftShopServiceImplementList\AbstractGiftShopServiceImplementList.csproj">
       <Project>{aff88f55-c383-45d7-8b49-4d734ba415f3}</Project>

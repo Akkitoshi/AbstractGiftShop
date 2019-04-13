@@ -11,7 +11,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AbstractGiftShopServiceImpl
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AbstractGiftShopView", "AbstractGiftShopView\AbstractGiftShopView.csproj", "{51285BDD-E463-42DD-AE87-81FAB52DB5EE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AbstractShopServiceImplementDataBase", "AbstractShopServiceImplementDataBase\AbstractShopServiceImplementDataBase.csproj", "{7D832076-B0E3-43FB-BCF5-7479AEB82E74}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AbstractGiftShopServiceImplementDataBase", "AbstractShopServiceImplementDataBase\AbstractGiftShopServiceImplementDataBase.csproj", "{7D832076-B0E3-43FB-BCF5-7479AEB82E74}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

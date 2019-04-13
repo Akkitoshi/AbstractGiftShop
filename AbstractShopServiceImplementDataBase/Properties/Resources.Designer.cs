@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace AbstractShopServiceImplementDataBase.Properties
+namespace AbstractGiftShopServiceImplementDataBase.Properties
 {
 
 

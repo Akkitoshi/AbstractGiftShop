@@ -230,6 +230,10 @@
       <Project>{aff88f55-c383-45d7-8b49-4d734ba415f3}</Project>
       <Name>AbstractGiftShopServiceImplementList</Name>
     </ProjectReference>
+    <ProjectReference Include="..\AbstractShopServiceImplementDataBase\AbstractGiftShopServiceImplementDataBase.csproj">
+      <Project>{7d832076-b0e3-43fb-bcf5-7479aeb82e74}</Project>
+      <Name>AbstractGiftShopServiceImplementDataBase</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

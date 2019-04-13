@@ -1,11 +1,11 @@
 ﻿using AbstractGiftShopModel;
 using System.Data.Entity;
 
-namespace AbstractShopServiceImplementDataBase
+namespace AbstractGiftShopServiceImplementDataBase
 {
-    public class AbstractDbContext : DbContext
+    public class AbstractGiftShopDbContext : DbContext
     {
- public AbstractDbContext() : base("AbstractDatabase")
+        public AbstractGiftShopDbContext() : base("AbstractGiftShopDatabase")
         {
             //настройки конфигурации для entity
             Configuration.ProxyCreationEnabled = false;
@@ -13,12 +13,12 @@ namespace AbstractShopServiceImplementDataBase
             var ensureDLLIsCopied =
            System.Data.Entity.SqlServer.SqlProviderServices.Instance;
         }
-        public virtual DbSet<SClient> SClients { get; set; }
+        public virtual DbSet<SClient> Clients { get; set; }
         public virtual DbSet<Materials> Materialss { get; set; }
         public virtual DbSet<SOrder> SOrders { get; set; }
         public virtual DbSet<Gift> Gifts { get; set; }
         public virtual DbSet<GiftMaterials> GiftMaterialss { get; set; }
-        public virtual DbSet<SStock> SStocks { get; set; }
-        public virtual DbSet<StockMaterials> StockMaterials { get; set; }
+        public virtual DbSet<SStock> Stocks { get; set; }
+        public virtual DbSet<StockMaterials> StockMaterialss { get; set; }
     }
 }
