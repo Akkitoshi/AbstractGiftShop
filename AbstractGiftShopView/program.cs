@@ -1,8 +1,9 @@
 ﻿using AbstractGiftShopServiceDAL.Interfaces;
-using AbstractGiftShopServiceImplementList.Implementations;
+using AbstractGiftShopServiceImplementDataBase;
 using AbstractGiftShopView;
-using AbstractShopServiceImplementList.Implementations;
+using AbstractShopServiceImplementDataBase.Implementations;
 using System;
+using System.Data.Entity;
 using System.Windows.Forms;
 using Unity;
 using Unity.Lifetime;
@@ -24,16 +25,18 @@ namespace AbstractShopView
         public static IUnityContainer BuildUnityContainer()
         {
             var currentContainer = new UnityContainer();
-            currentContainer.RegisterType<ISClientService, ClientServiceList>(new
+            currentContainer.RegisterType<DbContext, AbstractGiftShopDbContext>(new
            HierarchicalLifetimeManager());
-            currentContainer.RegisterType<IMaterialsService, MaterialsServiceList>(new
- HierarchicalLifetimeManager());
-            currentContainer.RegisterType<IGiftService, GiftServiceList>(new
+            currentContainer.RegisterType<ISClientService, SClientServiceDB>(new
            HierarchicalLifetimeManager());
-            currentContainer.RegisterType<IMainService, MainServiceList>(new
+            currentContainer.RegisterType<IMaterialsService, MaterialsServiceDB>(new
            HierarchicalLifetimeManager());
-            currentContainer.RegisterType<ISStockService, StockServiceList>(new
-HierarchicalLifetimeManager());
+            currentContainer.RegisterType<IGiftService, GiftServiceDB>(new
+           HierarchicalLifetimeManager());
+            currentContainer.RegisterType<ISStockService, SStockServiceDB>(new
+           HierarchicalLifetimeManager());
+            currentContainer.RegisterType<IMainService, MainServiceDB>(new
+           HierarchicalLifetimeManager());
             return currentContainer;
         }
     }

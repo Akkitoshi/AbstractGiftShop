@@ -85,7 +85,7 @@
             this.textBoxCount.Name = "textBoxCount";
             this.textBoxCount.Size = new System.Drawing.Size(239, 20);
             this.textBoxCount.TabIndex = 2;
-            this.textBoxCount.TextChanged += new System.EventHandler(this.textBoxCount_TextChanged);
+            this.textBoxCount.TextChanged += new System.EventHandler(this.textBoxCount_CountChanged);
             // 
             // textBoxSum
             // 
@@ -93,7 +93,7 @@
             this.textBoxSum.Name = "textBoxSum";
             this.textBoxSum.Size = new System.Drawing.Size(239, 20);
             this.textBoxSum.TabIndex = 3;
-            this.textBoxSum.TextChanged += new System.EventHandler(this.comboBoxGift_SelectedIndexChanged);
+            this.textBoxSum.TextChanged += new System.EventHandler(this.comboBoxGift_SumChanged);
             // 
             // buttonSave
             // 
