@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.comboBoxClient = new System.Windows.Forms.ComboBox();
-            this.sClientBindingModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.comboBoxSClient = new System.Windows.Forms.ComboBox();
+            this.SClientBindingModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.comboBoxGift = new System.Windows.Forms.ComboBox();
             this.giftBindingModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.textBoxCount = new System.Windows.Forms.TextBox();
@@ -41,29 +41,29 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.formClientsBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.formClientsBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.FormClientsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.FormClientsBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.materialsBindingModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            ((System.ComponentModel.ISupportInitialize)(this.sClientBindingModelBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.SClientBindingModelBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.giftBindingModelBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.formClientsBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.formClientsBindingSource1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.FormClientsBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.FormClientsBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.materialsBindingModelBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
-            // comboBoxClient
+            // comboBoxSClient
             // 
-            this.comboBoxClient.DataSource = this.sClientBindingModelBindingSource;
-            this.comboBoxClient.DisplayMember = "ClientFIO";
-            this.comboBoxClient.FormattingEnabled = true;
-            this.comboBoxClient.Location = new System.Drawing.Point(82, 12);
-            this.comboBoxClient.Name = "comboBoxClient";
-            this.comboBoxClient.Size = new System.Drawing.Size(239, 21);
-            this.comboBoxClient.TabIndex = 0;
+            this.comboBoxSClient.DataSource = this.SClientBindingModelBindingSource;
+            this.comboBoxSClient.DisplayMember = "SClientFIO";
+            this.comboBoxSClient.FormattingEnabled = true;
+            this.comboBoxSClient.Location = new System.Drawing.Point(82, 12);
+            this.comboBoxSClient.Name = "comboBoxSClient";
+            this.comboBoxSClient.Size = new System.Drawing.Size(239, 21);
+            this.comboBoxSClient.TabIndex = 0;
             // 
-            // sClientBindingModelBindingSource
+            // SClientBindingModelBindingSource
             // 
-            this.sClientBindingModelBindingSource.DataSource = typeof(AbstractGiftShopServiceDAL.BindingModels.SClientBindingModel);
+            this.SClientBindingModelBindingSource.DataSource = typeof(AbstractGiftShopServiceDAL.BindingModels.SClientBindingModel);
             // 
             // comboBoxGift
             // 
@@ -151,13 +151,13 @@
             this.label4.TabIndex = 9;
             this.label4.Text = "Сумма";
             // 
-            // formClientsBindingSource
+            // FormClientsBindingSource
             // 
-            this.formClientsBindingSource.DataSource = typeof(AbstractgiftShopView.FormClients);
+            this.FormClientsBindingSource.DataSource = typeof(AbstractGiftShopView.FormClients);
             // 
-            // formClientsBindingSource1
+            // FormClientsBindingSource1
             // 
-            this.formClientsBindingSource1.DataSource = typeof(AbstractgiftShopView.FormClients);
+            this.FormClientsBindingSource1.DataSource = typeof(AbstractGiftShopView.FormClients);
             // 
             // materialsBindingModelBindingSource
             // 
@@ -177,14 +177,14 @@
             this.Controls.Add(this.textBoxSum);
             this.Controls.Add(this.textBoxCount);
             this.Controls.Add(this.comboBoxGift);
-            this.Controls.Add(this.comboBoxClient);
+            this.Controls.Add(this.comboBoxSClient);
             this.Name = "FormCreateOrder";
             this.Text = "Заказ";
             this.Load += new System.EventHandler(this.FormCreateOrder_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.sClientBindingModelBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.SClientBindingModelBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.giftBindingModelBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.formClientsBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.formClientsBindingSource1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.FormClientsBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.FormClientsBindingSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.materialsBindingModelBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -193,7 +193,7 @@
 
         #endregion
 
-        private System.Windows.Forms.ComboBox comboBoxClient;
+        private System.Windows.Forms.ComboBox comboBoxSClient;
         private System.Windows.Forms.ComboBox comboBoxGift;
         private System.Windows.Forms.TextBox textBoxCount;
         private System.Windows.Forms.TextBox textBoxSum;
@@ -203,9 +203,9 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.BindingSource formClientsBindingSource;
-        private System.Windows.Forms.BindingSource formClientsBindingSource1;
-        private System.Windows.Forms.BindingSource sClientBindingModelBindingSource;
+        private System.Windows.Forms.BindingSource FormClientsBindingSource;
+        private System.Windows.Forms.BindingSource FormClientsBindingSource1;
+        private System.Windows.Forms.BindingSource SClientBindingModelBindingSource;
         private System.Windows.Forms.BindingSource materialsBindingModelBindingSource;
         private System.Windows.Forms.BindingSource giftBindingModelBindingSource;
     }

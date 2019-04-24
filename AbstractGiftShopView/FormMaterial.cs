@@ -1,6 +1,6 @@
 ﻿using AbstractGiftShopServiceDAL.BindingModels;
 using AbstractGiftShopServiceDAL.Interfaces;
-using AbstractGiftShopServiceDAL.ViewModels;
+using AbstractGiftShopServiceDAL.ViewModel;
 using System;
 using System.Windows.Forms;
 using Unity;

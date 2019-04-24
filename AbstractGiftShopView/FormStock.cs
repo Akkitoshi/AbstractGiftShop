@@ -9,7 +9,6 @@ namespace AbstractGiftShopView
 {
     public partial class FormStock : Form
     {
-
         [Dependency]
         public new IUnityContainer Container { get; set; }
         public int Id { set { id = value; } }
@@ -35,23 +34,22 @@ namespace AbstractGiftShopView
                         dataGridView.Columns[1].Visible = false;
                         dataGridView.Columns[2].Visible = false;
                         dataGridView.Columns[3].AutoSizeMode =
-                       DataGridViewAutoSizeColumnMode.Fill;
+                        DataGridViewAutoSizeColumnMode.Fill;
                     }
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK,
-                   MessageBoxIcon.Error);
+                    MessageBoxIcon.Error);
                 }
             }
         }
-
         private void buttonSave_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(textBoxName.Text))
             {
                 MessageBox.Show("Заполните название", "Ошибка", MessageBoxButtons.OK,
-               MessageBoxIcon.Error);
+                MessageBoxIcon.Error);
                 return;
             }
             try
@@ -72,22 +70,20 @@ namespace AbstractGiftShopView
                     });
                 }
                 MessageBox.Show("Сохранение прошло успешно", "Сообщение",
-               MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBoxButtons.OK, MessageBoxIcon.Information);
                 DialogResult = DialogResult.OK;
                 Close();
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK,
-               MessageBoxIcon.Error);
+                MessageBoxIcon.Error);
             }
         }
-        private void ButtonCancel_Click(object sender, EventArgs e)
+        private void buttonCancel_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.Cancel;
             Close();
         }
-
     }
-
 }

@@ -1,7 +1,6 @@
 ﻿using AbstractGiftShopServiceDAL.BindingModels;
 using AbstractGiftShopServiceDAL.Interfaces;
-using AbstractGiftShopServiceDAL.ViewModels;
-using AbstractgiftShopView;
+using AbstractGiftShopServiceDAL.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
@@ -14,10 +13,12 @@ namespace AbstractGiftShopView
         [Dependency]
         public new IUnityContainer Container { get; set; }
         private readonly IMainService service;
-        public FormMain(IMainService service)
+        private readonly IReportService reportService;
+        public FormMain(IMainService service, IReportService reportService)
         {
             InitializeComponent();
             this.service = service;
+            this.reportService = reportService;
         }
         private void LoadData()
         {
@@ -130,7 +131,42 @@ namespace AbstractGiftShopView
             form.ShowDialog();
         }
 
-        private void FormMain_Load(object sender, EventArgs e)
+        private void прайсПодарковToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog sfd = new SaveFileDialog
+            {
+                Filter = "doc|*.doc|docx|*.docx"
+            };
+            if (sfd.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    reportService.SaveGiftPrice(new ReportBindingModel
+                    {
+                        FileName = sfd.FileName
+                    });
+                    MessageBox.Show("Выполнено", "Успех", MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                }
+            }
+        }
+        private void загруженностьСкладовToolStripMenuItem_Click(object sender, EventArgs
+       e)
+        {
+            var form = Container.Resolve<FormStocksLoad>();
+        form.ShowDialog();
+        }
+        private void заказыКлиентовToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var form = Container.Resolve<FormClientOrders>();
+            form.ShowDialog();
+        }
+            private void FormMain_Load(object sender, EventArgs e)
         {
             LoadData();
         }

@@ -1,7 +1,7 @@
 ﻿using AbstractGiftShopModel;
 using AbstractGiftShopServiceDAL.BindingModels;
 using AbstractGiftShopServiceDAL.Interfaces;
-using AbstractGiftShopServiceDAL.ViewModels;
+using AbstractGiftShopServiceDAL.ViewModel;
 using AbstractGiftShopServiceImplementDataBase;
 using System;
 using System.Collections.Generic;
@@ -18,7 +18,7 @@ namespace AbstractShopServiceImplementDataBase.Implementations
         }
         public List<SClientViewModel> GetList()
         {
-            List<SClientViewModel> result = context.Clients.Select(rec => new
+            List<SClientViewModel> result = context.SClients.Select(rec => new
            SClientViewModel
             {
                 Id = rec.Id,
@@ -29,7 +29,7 @@ namespace AbstractShopServiceImplementDataBase.Implementations
         }
         public SClientViewModel GetElement(int id)
         {
-            SClient element = context.Clients.FirstOrDefault(rec => rec.Id == id);
+            SClient element = context.SClients.FirstOrDefault(rec => rec.Id == id);
             if (element != null)
             {
                 return new SClientViewModel
@@ -42,13 +42,13 @@ namespace AbstractShopServiceImplementDataBase.Implementations
         }
         public void AddElement(SClientBindingModel model)
         {
-            SClient element = context.Clients.FirstOrDefault(rec => rec.SClientFIO ==
+            SClient element = context.SClients.FirstOrDefault(rec => rec.SClientFIO ==
            model.SClientFIO);
             if (element != null)
             {
                 throw new Exception("Уже есть клиент с таким ФИО");
             }
-            context.Clients.Add(new SClient
+            context.SClients.Add(new SClient
             {
                 SClientFIO = model.SClientFIO
             });
@@ -56,13 +56,13 @@ namespace AbstractShopServiceImplementDataBase.Implementations
         }
         public void UpdElement(SClientBindingModel model)
         {
-            SClient element = context.Clients.FirstOrDefault(rec => rec.SClientFIO ==
+            SClient element = context.SClients.FirstOrDefault(rec => rec.SClientFIO ==
            model.SClientFIO && rec.Id != model.Id);
             if (element != null)
             {
                 throw new Exception("Уже есть клиент с таким ФИО");
             }
-            element = context.Clients.FirstOrDefault(rec => rec.Id == model.Id);
+            element = context.SClients.FirstOrDefault(rec => rec.Id == model.Id);
             if (element == null)
             {
                 throw new Exception("Элемент не найден");
@@ -72,10 +72,10 @@ namespace AbstractShopServiceImplementDataBase.Implementations
         }
         public void DelElement(int id)
         {
-            SClient element = context.Clients.FirstOrDefault(rec => rec.Id == id);
+            SClient element = context.SClients.FirstOrDefault(rec => rec.Id == id);
             if (element != null)
             {
-                context.Clients.Remove(element);
+                context.SClients.Remove(element);
                 context.SaveChanges();
             }
             else

@@ -1,5 +1,6 @@
 ﻿using AbstractGiftShopServiceDAL.Interfaces;
 using AbstractGiftShopServiceImplementDataBase;
+using AbstractGiftShopServiceImplementDataBase.Implementations;
 using AbstractGiftShopView;
 using AbstractShopServiceImplementDataBase.Implementations;
 using System;
@@ -8,7 +9,7 @@ using System.Windows.Forms;
 using Unity;
 using Unity.Lifetime;
 
-namespace AbstractShopView
+namespace AbstractGiftShopView
 {
     static class Program
     {/// <summary>
@@ -37,6 +38,7 @@ namespace AbstractShopView
            HierarchicalLifetimeManager());
             currentContainer.RegisterType<IMainService, MainServiceDB>(new
            HierarchicalLifetimeManager());
+            currentContainer.RegisterType<IReportService, ReportServiceDB>(new HierarchicalLifetimeManager());
             return currentContainer;
         }
     }

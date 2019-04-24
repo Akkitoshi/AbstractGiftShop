@@ -1,7 +1,7 @@
 ﻿using AbstractGiftShopModel;
 using AbstractGiftShopServiceDAL.BindingModels;
 using AbstractGiftShopServiceDAL.Interfaces;
-using AbstractGiftShopServiceDAL.ViewModels;
+using AbstractGiftShopServiceDAL.ViewModel;
 using AbstractGiftShopServiceImplement;
 using System;
 using System.Collections.Generic;
@@ -9,10 +9,10 @@ using System.Linq;
 
 namespace AbstractShopServiceImplementList.Implementations
 {
-    public class ClientServiceList : ISClientService
+    public class SClientServiceList : ISClientService
     {
         private DataListSingleton source;
-        public ClientServiceList()
+        public SClientServiceList()
         {
             source = DataListSingleton.GetInstance();
         }

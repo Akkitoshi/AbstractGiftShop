@@ -10,20 +10,71 @@
 
 namespace AbstractGiftShopServiceImplementDataBase.Properties
 {
-
-
+    /// <summary>
+    ///   Класс ресурса со строгой типизацией для поиска локализованных строк и т.д.
+    /// </summary>
+    // Этот класс создан автоматически классом StronglyTypedResourceBuilder
+    // с помощью такого средства, как ResGen или Visual Studio.
+    // Чтобы добавить или удалить член, измените файл .ResX и снова запустите ResGen
+    // с параметром /str или перестройте свой проект VS.
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "11.0.0.0")]
-    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase
+    internal class Resources
     {
 
-        private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
+        private static global::System.Resources.ResourceManager resourceMan;
 
-        public static Settings Default
+        private static global::System.Globalization.CultureInfo resourceCulture;
+
+        [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
+        internal Resources()
+        {
+        }
+
+        /// <summary>
+        ///   Возвращает кэшированный экземпляр ResourceManager, использованный этим классом.
+        /// </summary>
+        [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
+        internal static global::System.Resources.ResourceManager ResourceManager
         {
             get
             {
-                return defaultInstance;
+                if (object.ReferenceEquals(resourceMan, null))
+                {
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("AbstractShopServiceImplementDataBase.Properties.Resources", typeof(Resources).Assembly);
+                    resourceMan = temp;
+                }
+                return resourceMan;
+            }
+        }
+
+        /// <summary>
+        ///   Перезаписывает свойство CurrentUICulture текущего потока для всех
+        ///   обращений к ресурсу с помощью этого класса ресурса со строгой типизацией.
+        /// </summary>
+        [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
+        internal static global::System.Globalization.CultureInfo Culture
+        {
+            get
+            {
+                return resourceCulture;
+            }
+            set
+            {
+                resourceCulture = value;
+            }
+        }
+
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Byte[].
+        /// </summary>
+        internal static byte[] TIMCYR
+        {
+            get
+            {
+                object obj = ResourceManager.GetObject("TIMCYR", resourceCulture);
+                return ((byte[])(obj));
             }
         }
     }

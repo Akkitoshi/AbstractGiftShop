@@ -1,4 +1,4 @@
-﻿namespace AbstractgiftShopView
+﻿namespace AbstractGiftShopView
 {
     partial class FormClients
     {

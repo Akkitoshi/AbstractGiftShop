@@ -1,5 +1,5 @@
 ﻿using AbstractGiftShopServiceDAL.BindingModels;
-using AbstractGiftShopServiceDAL.ViewModels;
+using AbstractGiftShopServiceDAL.ViewModel;
 using System.Collections.Generic;
 
 namespace AbstractGiftShopServiceDAL.Interfaces
