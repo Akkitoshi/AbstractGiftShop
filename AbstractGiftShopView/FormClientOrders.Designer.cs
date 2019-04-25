@@ -47,7 +47,7 @@
             this.buttonMake.TabIndex = 0;
             this.buttonMake.Text = "Сформировать";
             this.buttonMake.UseVisualStyleBackColor = true;
-            this.buttonMake.Click += new System.EventHandler(this.FormClientOrders_Load);
+            this.buttonMake.Click += new System.EventHandler(this.buttonMake_Click);
             // 
             // dateTimePickerFrom
             // 
@@ -119,7 +119,6 @@
             this.Controls.Add(this.panel);
             this.Name = "FormClientOrders";
             this.Text = "Заказы клиентов";
-            this.Load += new System.EventHandler(this.FormClientOrders_Load);
             this.panel.ResumeLayout(false);
             this.panel.PerformLayout();
             this.ResumeLayout(false);
