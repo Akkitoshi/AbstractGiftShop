@@ -15,7 +15,29 @@ namespace AbstractGiftShopView
 
         private void FormPutOnStock_Load(object sender, EventArgs e)
         {
-
+            try
+            {
+                List<MaterialsViewModel> listC = APIClient.GetRequest<List<MaterialsViewModel>>("api/Materials/GetList");
+                if (listC != null)
+                {
+                    comboBoxMaterials.DisplayMember = "MaterialsName";
+                    comboBoxMaterials.ValueMember = "Id";
+                    comboBoxMaterials.DataSource = listC;
+                    comboBoxMaterials.SelectedItem = null;
+                }
+                List<SStockViewModel> listS = APIClient.GetRequest<List<SStockViewModel>>("api/Stock/GetList");
+                if (listS != null)
+                {
+                    comboBoxStocks.DisplayMember = "SStockName";
+                    comboBoxStocks.ValueMember = "Id";
+                    comboBoxStocks.DataSource = listS;
+                    comboBoxStocks.SelectedItem = null;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void buttonSave_Click(object sender, EventArgs e)
@@ -37,7 +59,7 @@ namespace AbstractGiftShopView
             }
             try
             {
-                APIClient.PostRequest<StockMaterialsBindingModel, bool>("api/Main/PutMaterialOnStock", new StockMaterialsBindingModel
+                APIClient.PostRequest<StockMaterialsBindingModel, bool>("api/Main/PutMaterialsOnStock", new StockMaterialsBindingModel
                 {
                     MaterialsId = Convert.ToInt32(comboBoxMaterials.SelectedValue),
                     SStockId = Convert.ToInt32(comboBoxStocks.SelectedValue),

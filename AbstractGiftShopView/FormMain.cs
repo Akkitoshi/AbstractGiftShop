@@ -132,7 +132,7 @@ namespace AbstractGiftShopView
             {
                 try
                 {
-                    APIClient.PostRequest<ReportBindingModel, bool>("api/Edition/SaveItemPrice", new ReportBindingModel
+                    APIClient.PostRequest<ReportBindingModel, bool>("api/Report/SaveGiftPrice", new ReportBindingModel
                     {
                         FileName = sfd.FileName
                     });

@@ -16,7 +16,22 @@ namespace AbstractGiftShopView
         }
         private void FormClient_Load(object sender, EventArgs e)
         {
-
+            if (id.HasValue)
+            {
+                try
+                {
+                    SClientViewModel view = APIClient.GetRequest<SClientViewModel>("api/Client/Get/" + id.Value);
+                    textBoxFIO.Text = view.SClientFIO;
+                    if (view != null)
+                    {
+                        textBoxFIO.Text = view.SClientFIO;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
         }
         private void buttonSave_Click(object sender, EventArgs e)
         {

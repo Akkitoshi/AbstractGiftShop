@@ -14,7 +14,30 @@ namespace AbstractGiftShopView
         }
         private void FormCreateOrder_Load(object sender, EventArgs e)
         {
-
+            try
+            {
+                List<SClientViewModel> listC = APIClient.GetRequest<List<SClientViewModel>>("api/Client/GetList");
+                if (listC != null)
+                {
+                    comboBoxClient.DisplayMember = "SClientFIO";
+                    comboBoxClient.ValueMember = "Id";
+                    comboBoxClient.DataSource = listC;
+                    comboBoxClient.SelectedItem = null;
+                }
+                List<GiftViewModel> listP = APIClient.GetRequest<List<GiftViewModel>>("api/Gift/GetList");
+                if (listP != null)
+                {
+                    comboBoxGift.DisplayMember = "GiftName";
+                    comboBoxGift.ValueMember = "Id";
+                    comboBoxGift.DataSource = listP;
+                    comboBoxGift.SelectedItem = null;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK,
+               MessageBoxIcon.Error);
+            }
         }
         private void CalcSum()
         {

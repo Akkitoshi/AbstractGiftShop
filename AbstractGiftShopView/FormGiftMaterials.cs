@@ -21,7 +21,7 @@ namespace AbstractGiftShopView
         {
             try
             {
-                List<MaterialsViewModel> list = APIClient.GetRequest<List<MaterialsViewModel>>("api/Material/GetList");
+                List<MaterialsViewModel> list = APIClient.GetRequest<List<MaterialsViewModel>>("api/Materials/GetList");
                 if (list != null)
                 {
                     comboBoxGiftMaterials.DisplayMember = "MaterialsName";

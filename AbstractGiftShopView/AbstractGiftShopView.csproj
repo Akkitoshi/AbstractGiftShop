@@ -61,7 +61,7 @@
       <HintPath>..\packages\Microsoft.SqlServer.Types.14.0.1016.290\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.12.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -268,10 +268,6 @@
     <ProjectReference Include="..\AbstractGiftShopModel\AbstractGiftShopModel.csproj">
       <Project>{8f783248-6123-48aa-aaa3-027c7e89cb89}</Project>
       <Name>AbstractGiftShopModel</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\AbstractGiftShopRestApi\AbstractGiftShopRestApi.csproj">
-      <Project>{8250a87a-819d-4af7-863c-b26f7dc661db}</Project>
-      <Name>AbstractGiftShopRestApi</Name>
     </ProjectReference>
     <ProjectReference Include="..\AbstractGiftShopServiceDAL\AbstractGiftShopServiceDAL.csproj">
       <Project>{4c4bc1d9-62d7-46a8-a3a8-6477395c4059}</Project>

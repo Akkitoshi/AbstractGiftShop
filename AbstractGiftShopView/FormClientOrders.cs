@@ -30,7 +30,7 @@ namespace AbstractGiftShopView
                 reportViewer.LocalReport.SetParameters(parameter);
                 List<SClientOrdersModel> response =
                APIClient.PostRequest<ReportBindingModel,
-               List<SClientOrdersModel>>("api/Report/GetClientOrders", new ReportBindingModel
+               List<SClientOrdersModel>>("api/Report/GetSClientOrders", new ReportBindingModel
                {
                    DateFrom = dateTimePickerFrom.Value,
                    DateTo = dateTimePickerTo.Value

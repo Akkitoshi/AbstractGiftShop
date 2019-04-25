@@ -15,7 +15,21 @@ namespace AbstractGiftShopView
         }
         private void FormMaterial_Load(object sender, EventArgs e)
         {
-
+            if (id.HasValue)
+            {
+                try
+                {
+                    MaterialsViewModel view = APIClient.GetRequest<MaterialsViewModel>("api/Material/Get/" + id.Value); ;
+                    if (view != null)
+                    {
+                        textBoxName.Text = view.MaterialsName;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
         }
         private void buttonSave_Click(object sender, EventArgs e)
         {
