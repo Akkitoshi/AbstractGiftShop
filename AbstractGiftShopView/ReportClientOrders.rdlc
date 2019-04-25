@@ -613,7 +613,7 @@
               <PaddingBottom>2pt</PaddingBottom>
             </Style>
           </Textbox>
-          <Textbox Name="Textbox3">
+          <Textbox Name="Sum1">
             <CanGrow>true</CanGrow>
             <KeepTogether>true</KeepTogether>
             <Paragraphs>
@@ -627,9 +627,9 @@
                 <Style />
               </Paragraph>
             </Paragraphs>
-            <rd:DefaultName>Textbox3</rd:DefaultName>
+            <rd:DefaultName>Sum1</rd:DefaultName>
             <Top>4.67995cm</Top>
-            <Left>14.28433cm</Left>
+            <Left>14.1196cm</Left>
             <Height>0.6cm</Height>
             <Width>2.5cm</Width>
             <ZIndex>4</ZIndex>
