@@ -620,7 +620,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value />
+                    <Value>=Fields!Sum.Value</Value>
                     <Style />
                   </TextRun>
                 </TextRuns>

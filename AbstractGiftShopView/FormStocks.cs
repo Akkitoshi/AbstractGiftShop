@@ -1,31 +1,29 @@
-﻿using AbstractGiftShopServiceDAL.Interfaces;
+﻿using AbstractGiftShopServiceDAL.BindingModels;
 using AbstractGiftShopServiceDAL.ViewModel;
+using AbstractGiftShopView;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
-using Unity;
-
 
 namespace AbstractGiftShopView
 {
     public partial class FormStocks : Form
     {
-        [Dependency]
-        public new IUnityContainer Container { get; set; }
-
-        private readonly ISStockService service;
-
-        public FormStocks(ISStockService service) { InitializeComponent(); this.service = service; }
+        public FormStocks()
+        {
+            InitializeComponent();
+        }
 
         private void FormStocks_Load(object sender, EventArgs e)
         {
             LoadData();
         }
+
         private void LoadData()
         {
             try
             {
-                List<SStockViewModel> list = service.GetList();
+                List<SStockViewModel> list = APIClient.GetRequest<List<SStockViewModel>>("api/Stock/GetList");
                 if (list != null)
                 {
                     dataGridView.DataSource = list;
@@ -36,14 +34,13 @@ namespace AbstractGiftShopView
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK,
-                MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         private void buttonAdd_Click(object sender, EventArgs e)
         {
-            var form = Container.Resolve<FormStock>();
+            var form = new AbstractGiftShopView.FormStock();
             if (form.ShowDialog() == DialogResult.OK)
             {
                 LoadData();
@@ -54,7 +51,7 @@ namespace AbstractGiftShopView
         {
             if (dataGridView.SelectedRows.Count == 1)
             {
-                var form = Container.Resolve<FormStock>();
+                var form = new AbstractGiftShopView.FormStock();
                 form.Id = Convert.ToInt32(dataGridView.SelectedRows[0].Cells[0].Value);
                 if (form.ShowDialog() == DialogResult.OK)
                 {
@@ -67,28 +64,26 @@ namespace AbstractGiftShopView
         {
             if (dataGridView.SelectedRows.Count == 1)
             {
-                if (MessageBox.Show("Удалить запись", "Вопрос", MessageBoxButtons.YesNo,
-                MessageBoxIcon.Question) == DialogResult.Yes)
+                if (MessageBox.Show("Удалить запись", "Вопрос", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     int id =
-                    Convert.ToInt32(dataGridView.SelectedRows[0].Cells[0].Value);
+                        Convert.ToInt32(dataGridView.SelectedRows[0].Cells[0].Value);
                     try
                     {
-                        service.DelElement(id);
+                        APIClient.PostRequest<SStockBindingModel, bool>("api/Stock/DelElement", new SStockBindingModel { Id = id });
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK,
-                        MessageBoxIcon.Error);
+                        MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                     LoadData();
                 }
             }
         }
+
         private void buttonRef_Click(object sender, EventArgs e)
         {
             LoadData();
         }
-
     }
 }

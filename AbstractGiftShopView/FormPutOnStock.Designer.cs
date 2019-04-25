@@ -32,17 +32,17 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.comboBoxStock = new System.Windows.Forms.ComboBox();
+            this.comboBoxStocks = new System.Windows.Forms.ComboBox();
+            this.sStockBindingModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.comboBoxMaterials = new System.Windows.Forms.ComboBox();
             this.materialsBindingModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.textBoxCount = new System.Windows.Forms.TextBox();
             this.buttonSave = new System.Windows.Forms.Button();
             this.buttonCancel = new System.Windows.Forms.Button();
-            this.sStockBindingModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.bindingSource2 = new System.Windows.Forms.BindingSource(this.components);
-            ((System.ComponentModel.ISupportInitialize)(this.materialsBindingModelBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sStockBindingModelBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.materialsBindingModelBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource2)).BeginInit();
             this.SuspendLayout();
@@ -50,7 +50,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(13, 13);
+            this.label1.Location = new System.Drawing.Point(19, 13);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(38, 13);
             this.label1.TabIndex = 0;
@@ -68,21 +68,25 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(19, 97);
+            this.label3.Location = new System.Drawing.Point(16, 97);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(66, 13);
             this.label3.TabIndex = 2;
             this.label3.Text = "Количество";
             // 
-            // comboBoxStock
+            // comboBoxStocks
             // 
-            this.comboBoxStock.DataSource = this.sStockBindingModelBindingSource;
-            this.comboBoxStock.DisplayMember = "SStockName";
-            this.comboBoxStock.FormattingEnabled = true;
-            this.comboBoxStock.Location = new System.Drawing.Point(101, 13);
-            this.comboBoxStock.Name = "comboBoxStock";
-            this.comboBoxStock.Size = new System.Drawing.Size(219, 21);
-            this.comboBoxStock.TabIndex = 3;
+            this.comboBoxStocks.DataSource = this.sStockBindingModelBindingSource;
+            this.comboBoxStocks.DisplayMember = "SStockName";
+            this.comboBoxStocks.FormattingEnabled = true;
+            this.comboBoxStocks.Location = new System.Drawing.Point(101, 13);
+            this.comboBoxStocks.Name = "comboBoxStocks";
+            this.comboBoxStocks.Size = new System.Drawing.Size(219, 21);
+            this.comboBoxStocks.TabIndex = 3;
+            // 
+            // sStockBindingModelBindingSource
+            // 
+            this.sStockBindingModelBindingSource.DataSource = typeof(AbstractGiftShopServiceDAL.BindingModels.SStockBindingModel);
             // 
             // comboBoxMaterials
             // 
@@ -125,10 +129,6 @@
             this.buttonCancel.UseVisualStyleBackColor = true;
             this.buttonCancel.Click += new System.EventHandler(this.buttonCancel_Click);
             // 
-            // sStockBindingModelBindingSource
-            // 
-            this.sStockBindingModelBindingSource.DataSource = typeof(AbstractGiftShopServiceDAL.BindingModels.SStockBindingModel);
-            // 
             // FormPutOnStock
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -138,15 +138,15 @@
             this.Controls.Add(this.buttonSave);
             this.Controls.Add(this.textBoxCount);
             this.Controls.Add(this.comboBoxMaterials);
-            this.Controls.Add(this.comboBoxStock);
+            this.Controls.Add(this.comboBoxStocks);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "FormPutOnStock";
             this.Text = "Пополнить склад";
             this.Load += new System.EventHandler(this.FormPutOnStock_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.materialsBindingModelBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.sStockBindingModelBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.materialsBindingModelBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource2)).EndInit();
             this.ResumeLayout(false);
@@ -159,7 +159,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ComboBox comboBoxStock;
+        private System.Windows.Forms.ComboBox comboBoxStocks;
         private System.Windows.Forms.ComboBox comboBoxMaterials;
         private System.Windows.Forms.TextBox textBoxCount;
         private System.Windows.Forms.Button buttonSave;
