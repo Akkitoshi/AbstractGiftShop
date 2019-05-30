@@ -1,4 +1,6 @@
-﻿namespace AbstractGiftShopModel
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace AbstractGiftShopModel
 {
     /// <summary>
     /// Сколько материалов хранится на складе
@@ -9,5 +11,7 @@
         public int SStockId { get; set; }
         public int MaterialsId { get; set; }
         public int Count { get; set; }
+        public virtual Materials Materials { get; set; }
+        public virtual SStock SStock { get; set; }
     }
-}
+}
