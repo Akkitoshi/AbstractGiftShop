@@ -13,7 +13,7 @@ namespace AbstractGiftShopServiceImplementDataBase
             var ensureDLLIsCopied =
            System.Data.Entity.SqlServer.SqlProviderServices.Instance;
         }
-        public virtual DbSet<SClient> Clients { get; set; }
+        public virtual DbSet<SClient> SClients { get; set; }
         public virtual DbSet<Materials> Materialss { get; set; }
         public virtual DbSet<SOrder> SOrders { get; set; }
         public virtual DbSet<Gift> Gifts { get; set; }

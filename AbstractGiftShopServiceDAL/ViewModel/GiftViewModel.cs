@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
-using System.ComponentModel;
-namespace AbstractGiftShopServiceDAL.ViewModels
+using System.ComponentModel;
+
+namespace AbstractGiftShopServiceDAL.ViewModel
 {
     public class GiftViewModel
     {

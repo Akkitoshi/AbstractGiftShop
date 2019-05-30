@@ -1,7 +1,7 @@
 ﻿using AbstractGiftShopModel;
 using AbstractGiftShopServiceDAL.BindingModels;
 using AbstractGiftShopServiceDAL.Interfaces;
-using AbstractGiftShopServiceDAL.ViewModels;
+using AbstractGiftShopServiceDAL.ViewModel;
 using AbstractGiftShopServiceImplementDataBase;
 using System;
 using System.Collections.Generic;

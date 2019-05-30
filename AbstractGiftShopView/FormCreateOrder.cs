@@ -1,6 +1,6 @@
 ﻿using AbstractGiftShopServiceDAL.BindingModels;
 using AbstractGiftShopServiceDAL.Interfaces;
-using AbstractGiftShopServiceDAL.ViewModels;
+using AbstractGiftShopServiceDAL.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
@@ -31,10 +31,10 @@ namespace AbstractGiftShopView
                 List<SClientViewModel> listC = serviceC.GetList();
                 if (listC != null)
                 {
-                    comboBoxClient.DisplayMember = "SClientFIO";
-                    comboBoxClient.ValueMember = "Id";
-                    comboBoxClient.DataSource = listC;
-                    comboBoxClient.SelectedItem = null;
+                    comboBoxSClient.DisplayMember = "SClientFIO";
+                    comboBoxSClient.ValueMember = "Id";
+                    comboBoxSClient.DataSource = listC;
+                    comboBoxSClient.SelectedItem = null;
                 }
                 List<GiftViewModel> listP = serviceP.GetList();
                 if (listP != null)
@@ -59,9 +59,9 @@ namespace AbstractGiftShopView
                 try
                 {
                     int id = Convert.ToInt32(comboBoxGift.SelectedValue);
-                    GiftViewModel product = serviceP.GetElement(id);
+                    GiftViewModel Gift = serviceP.GetElement(id);
                     int count = Convert.ToInt32(textBoxCount.Text);
-                    textBoxSum.Text = (count * product.Price).ToString();
+                    textBoxSum.Text = (count * Gift.Price).ToString();
                 }
                 catch (Exception ex)
                 {
@@ -86,7 +86,7 @@ namespace AbstractGiftShopView
                MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            if (comboBoxClient.SelectedValue == null)
+            if (comboBoxSClient.SelectedValue == null)
             {
                 MessageBox.Show("Выберите клиента", "Ошибка", MessageBoxButtons.OK,
                MessageBoxIcon.Error);
@@ -102,7 +102,7 @@ namespace AbstractGiftShopView
             {
                 serviceM.CreateOrder(new SOrderBindingModel
                 {
-                    SClientId = Convert.ToInt32(comboBoxClient.SelectedValue),
+                    SClientId = Convert.ToInt32(comboBoxSClient.SelectedValue),
                     GiftId = Convert.ToInt32(comboBoxGift.SelectedValue),
                     Count = Convert.ToInt32(textBoxCount.Text),
                     Sum = Convert.ToInt32(textBoxSum.Text)

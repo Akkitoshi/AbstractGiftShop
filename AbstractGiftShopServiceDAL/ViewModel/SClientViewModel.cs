@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 
-namespace AbstractGiftShopServiceDAL.ViewModels
+namespace AbstractGiftShopServiceDAL.ViewModel
 {
     public class SClientViewModel
     {

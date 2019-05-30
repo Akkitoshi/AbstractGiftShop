@@ -43,18 +43,21 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BindingModels\MaterialsBindingModel.cs" />
+    <Compile Include="BindingModels\ReportBindingModel.cs" />
     <Compile Include="BindingModels\SClientBindingModel.cs" />
     <Compile Include="BindingModels\GiftBindingModel.cs" />
     <Compile Include="BindingModels\GiftMaterialsBindingModel.cs" />
     <Compile Include="BindingModels\SOrderBindingModel.cs" />
     <Compile Include="BindingModels\SStockBindingModel.cs" />
     <Compile Include="BindingModels\StockMaterialsBindingModel.cs" />
+    <Compile Include="Interfaces\IReportService.cs" />
     <Compile Include="Interfaces\ISClientService.cs" />
     <Compile Include="Interfaces\IMainService.cs" />
     <Compile Include="Interfaces\IGiftService.cs" />
     <Compile Include="Interfaces\IMaterialsService.cs" />
     <Compile Include="Interfaces\ISStockService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModel\SClientOrdersModel.cs" />
     <Compile Include="ViewModel\SClientViewModel.cs" />
     <Compile Include="ViewModel\GiftMaterialsViewModel.cs" />
     <Compile Include="ViewModel\GiftViewModel.cs" />
@@ -62,6 +65,7 @@
     <Compile Include="ViewModel\SOrderViewModel.cs" />
     <Compile Include="ViewModel\SStockViewModel.cs" />
     <Compile Include="ViewModel\StockMaterialsViewModel.cs" />
+    <Compile Include="ViewModel\StocksLoadViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AbstractGiftShopModel\AbstractGiftShopModel.csproj">

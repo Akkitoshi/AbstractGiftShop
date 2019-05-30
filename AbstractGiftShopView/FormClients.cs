@@ -1,13 +1,13 @@
 ﻿using AbstractGiftShopServiceDAL.Interfaces;
-using AbstractGiftShopServiceDAL.ViewModels;
-using AbstractShopView;
+using AbstractGiftShopServiceDAL.ViewModel;
+using AbstractGiftShopView;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 using Unity;
 
 
-namespace AbstractgiftShopView
+namespace AbstractGiftShopView
 {
     public partial class FormClients : Form
     {
