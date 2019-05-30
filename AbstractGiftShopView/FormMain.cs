@@ -1,30 +1,22 @@
 ﻿using AbstractGiftShopServiceDAL.BindingModels;
-using AbstractGiftShopServiceDAL.Interfaces;
 using AbstractGiftShopServiceDAL.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
-using Unity;
 
 namespace AbstractGiftShopView
 {
     public partial class FormMain : Form
     {
-        [Dependency]
-        public new IUnityContainer Container { get; set; }
-        private readonly IMainService service;
-        private readonly IReportService reportService;
-        public FormMain(IMainService service, IReportService reportService)
+        public FormMain()
         {
             InitializeComponent();
-            this.service = service;
-            this.reportService = reportService;
         }
         private void LoadData()
         {
             try
             {
-                List<SOrderViewModel> list = service.GetList();
+                List<SOrderViewModel> list = APIClient.GetRequest<List<SOrderViewModel>>("api/Main/GetList");
                 if (list != null)
                 {
                     dataGridView.DataSource = list;
@@ -42,24 +34,35 @@ namespace AbstractGiftShopView
                MessageBoxIcon.Error);
             }
         }
-        private void КлиентыToolStripMenuItem_Click(object sender, EventArgs e)
+        private void клиентыToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var form = Container.Resolve<FormClients>();
+            var form = new FormClients();
             form.ShowDialog();
         }
-        private void МатериалыToolStripMenuItem_Click(object sender, EventArgs e)
+        private void материалыToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var form = Container.Resolve<FormMaterials>();
+            var form = new FormMaterials();
             form.ShowDialog();
         }
-        private void ПодаркиToolStripMenuItem_Click(object sender, EventArgs e)
+        private void подаркиToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var form = Container.Resolve<FormGifts>();
+            var form = new FormGifts();
             form.ShowDialog();
         }
+        private void складыToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var form = new FormStocks();
+            form.ShowDialog();
+        }
+        private void пополнитьскладToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var form = new FormPutOnStock();
+            form.ShowDialog();
+        }
+
         private void buttonCreateOrder_Click(object sender, EventArgs e)
         {
-            var form = Container.Resolve<FormCreateOrder>();
+            var form = new FormCreateOrder();
             form.ShowDialog();
             LoadData();
         }
@@ -70,7 +73,7 @@ namespace AbstractGiftShopView
                 int id = Convert.ToInt32(dataGridView.SelectedRows[0].Cells[0].Value);
                 try
                 {
-                    service.TakeOrderInWork(new SOrderBindingModel { Id = id });
+                    APIClient.PostRequest<SOrderBindingModel, bool>("api/Main/TakeOrderInWork", new SOrderBindingModel { Id = id });
                     LoadData();
                 }
                 catch (Exception ex)
@@ -87,7 +90,7 @@ namespace AbstractGiftShopView
                 int id = Convert.ToInt32(dataGridView.SelectedRows[0].Cells[0].Value);
                 try
                 {
-                    service.FinishOrder(new SOrderBindingModel { Id = id });
+                    APIClient.PostRequest<SOrderBindingModel, bool>("api/Main/FinishOrder", new SOrderBindingModel { Id = id });
                     LoadData();
                 }
                 catch (Exception ex)
@@ -104,7 +107,7 @@ namespace AbstractGiftShopView
                 int id = Convert.ToInt32(dataGridView.SelectedRows[0].Cells[0].Value);
                 try
                 {
-                    service.PayOrder(new SOrderBindingModel { Id = id });
+                    APIClient.PostRequest<SOrderBindingModel, bool>("api/Main/PayOrder", new SOrderBindingModel { Id = id });
                     LoadData();
                 }
                 catch (Exception ex)
@@ -119,19 +122,7 @@ namespace AbstractGiftShopView
             LoadData();
         }
 
-        private void CкладыToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            var form = Container.Resolve<FormStocks>();
-            form.ShowDialog();
-        }
-
-        private void ПополнитьСкладToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            var form = Container.Resolve<FormPutOnStock>();
-            form.ShowDialog();
-        }
-
-        private void прайсПодарковToolStripMenuItem_Click(object sender, EventArgs e)
+        private void прайсподарковToolStripMenuItem_Click(object sender, EventArgs e)
         {
             SaveFileDialog sfd = new SaveFileDialog
             {
@@ -141,34 +132,29 @@ namespace AbstractGiftShopView
             {
                 try
                 {
-                    reportService.SaveGiftPrice(new ReportBindingModel
+                    APIClient.PostRequest<ReportBindingModel, bool>("api/Report/SaveGiftPrice", new ReportBindingModel
                     {
                         FileName = sfd.FileName
                     });
-                    MessageBox.Show("Выполнено", "Успех", MessageBoxButtons.OK,
-                        MessageBoxIcon.Information);
+                    MessageBox.Show("Выполнено", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK,
-                        MessageBoxIcon.Error);
+                    MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
-        }
-        private void загруженностьСкладовToolStripMenuItem_Click(object sender, EventArgs
-       e)
-        {
-            var form = Container.Resolve<FormStocksLoad>();
-        form.ShowDialog();
         }
-        private void заказыКлиентовToolStripMenuItem_Click(object sender, EventArgs e)
+        private void загруженностьскладовToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var form = Container.Resolve<FormClientOrders>();
+            var form = new FormStocksLoad();
             form.ShowDialog();
         }
-            private void FormMain_Load(object sender, EventArgs e)
+        private void заказыклиентовToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            LoadData();
+            var form = new FormClientOrders();
+            form.ShowDialog();
         }
+
+
     }
 }

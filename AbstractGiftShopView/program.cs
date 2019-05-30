@@ -1,45 +1,20 @@
-﻿using AbstractGiftShopServiceDAL.Interfaces;
-using AbstractGiftShopServiceImplementDataBase;
-using AbstractGiftShopServiceImplementDataBase.Implementations;
-using AbstractGiftShopView;
-using AbstractShopServiceImplementDataBase.Implementations;
+﻿using AbstractGiftShopView;
 using System;
-using System.Data.Entity;
 using System.Windows.Forms;
-using Unity;
-using Unity.Lifetime;
-
 namespace AbstractGiftShopView
 {
     static class Program
-    {/// <summary>
-     /// Главная точка входа для приложения.
-     /// </summary>
+    {
+        /// <summary>
+        /// Главная точка входа для приложения.
+        /// </summary>
         [STAThread]
         static void Main()
         {
-            var container = BuildUnityContainer();
+            APIClient.Connect();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(container.Resolve<FormMain>());
-        }
-        public static IUnityContainer BuildUnityContainer()
-        {
-            var currentContainer = new UnityContainer();
-            currentContainer.RegisterType<DbContext, AbstractGiftShopDbContext>(new
-           HierarchicalLifetimeManager());
-            currentContainer.RegisterType<ISClientService, SClientServiceDB>(new
-           HierarchicalLifetimeManager());
-            currentContainer.RegisterType<IMaterialsService, MaterialsServiceDB>(new
-           HierarchicalLifetimeManager());
-            currentContainer.RegisterType<IGiftService, GiftServiceDB>(new
-           HierarchicalLifetimeManager());
-            currentContainer.RegisterType<ISStockService, SStockServiceDB>(new
-           HierarchicalLifetimeManager());
-            currentContainer.RegisterType<IMainService, MainServiceDB>(new
-           HierarchicalLifetimeManager());
-            currentContainer.RegisterType<IReportService, ReportServiceDB>(new HierarchicalLifetimeManager());
-            return currentContainer;
+            Application.Run(new FormMain());
         }
     }
-}
+}

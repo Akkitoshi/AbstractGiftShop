@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.comboBoxSClient = new System.Windows.Forms.ComboBox();
+            this.comboBoxClient = new System.Windows.Forms.ComboBox();
             this.SClientBindingModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.comboBoxGift = new System.Windows.Forms.ComboBox();
             this.giftBindingModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -51,15 +51,15 @@
             ((System.ComponentModel.ISupportInitialize)(this.materialsBindingModelBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
-            // comboBoxSClient
+            // comboBoxClient
             // 
-            this.comboBoxSClient.DataSource = this.SClientBindingModelBindingSource;
-            this.comboBoxSClient.DisplayMember = "SClientFIO";
-            this.comboBoxSClient.FormattingEnabled = true;
-            this.comboBoxSClient.Location = new System.Drawing.Point(82, 12);
-            this.comboBoxSClient.Name = "comboBoxSClient";
-            this.comboBoxSClient.Size = new System.Drawing.Size(239, 21);
-            this.comboBoxSClient.TabIndex = 0;
+            this.comboBoxClient.DataSource = this.SClientBindingModelBindingSource;
+            this.comboBoxClient.DisplayMember = "SClientFIO";
+            this.comboBoxClient.FormattingEnabled = true;
+            this.comboBoxClient.Location = new System.Drawing.Point(82, 12);
+            this.comboBoxClient.Name = "comboBoxClient";
+            this.comboBoxClient.Size = new System.Drawing.Size(239, 21);
+            this.comboBoxClient.TabIndex = 0;
             // 
             // SClientBindingModelBindingSource
             // 
@@ -177,7 +177,7 @@
             this.Controls.Add(this.textBoxSum);
             this.Controls.Add(this.textBoxCount);
             this.Controls.Add(this.comboBoxGift);
-            this.Controls.Add(this.comboBoxSClient);
+            this.Controls.Add(this.comboBoxClient);
             this.Name = "FormCreateOrder";
             this.Text = "Заказ";
             this.Load += new System.EventHandler(this.FormCreateOrder_Load);
@@ -193,7 +193,7 @@
 
         #endregion
 
-        private System.Windows.Forms.ComboBox comboBoxSClient;
+        private System.Windows.Forms.ComboBox comboBoxClient;
         private System.Windows.Forms.ComboBox comboBoxGift;
         private System.Windows.Forms.TextBox textBoxCount;
         private System.Windows.Forms.TextBox textBoxSum;

@@ -31,7 +31,7 @@
             this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.comboBoxMaterial = new System.Windows.Forms.ComboBox();
+            this.comboBoxGiftMaterials = new System.Windows.Forms.ComboBox();
             this.materialsBindingModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.textBoxCount = new System.Windows.Forms.TextBox();
             this.buttonSave = new System.Windows.Forms.Button();
@@ -57,16 +57,16 @@
             this.label2.TabIndex = 1;
             this.label2.Text = "Количество";
             // 
-            // comboBoxMaterial
+            // comboBoxGiftMaterials
             // 
-            this.comboBoxMaterial.DataSource = this.materialsBindingModelBindingSource;
-            this.comboBoxMaterial.DisplayMember = "MaterialsName";
-            this.comboBoxMaterial.FormattingEnabled = true;
-            this.comboBoxMaterial.Location = new System.Drawing.Point(88, 10);
-            this.comboBoxMaterial.Name = "comboBoxMaterial";
-            this.comboBoxMaterial.Size = new System.Drawing.Size(156, 21);
-            this.comboBoxMaterial.TabIndex = 2;
-            this.comboBoxMaterial.Click += new System.EventHandler(this.FormGiftMaterials_Load);
+            this.comboBoxGiftMaterials.DataSource = this.materialsBindingModelBindingSource;
+            this.comboBoxGiftMaterials.DisplayMember = "MaterialsName";
+            this.comboBoxGiftMaterials.FormattingEnabled = true;
+            this.comboBoxGiftMaterials.Location = new System.Drawing.Point(88, 10);
+            this.comboBoxGiftMaterials.Name = "comboBoxGiftMaterials";
+            this.comboBoxGiftMaterials.Size = new System.Drawing.Size(156, 21);
+            this.comboBoxGiftMaterials.TabIndex = 2;
+            this.comboBoxGiftMaterials.Click += new System.EventHandler(this.FormGiftMaterials_Load);
             // 
             // materialsBindingModelBindingSource
             // 
@@ -107,7 +107,7 @@
             this.Controls.Add(this.buttonCancel);
             this.Controls.Add(this.buttonSave);
             this.Controls.Add(this.textBoxCount);
-            this.Controls.Add(this.comboBoxMaterial);
+            this.Controls.Add(this.comboBoxGiftMaterials);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "FormGiftMaterials";
@@ -123,7 +123,7 @@
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ComboBox comboBoxMaterial;
+        private System.Windows.Forms.ComboBox comboBoxGiftMaterials;
         private System.Windows.Forms.TextBox textBoxCount;
         private System.Windows.Forms.Button buttonSave;
         private System.Windows.Forms.Button buttonCancel;

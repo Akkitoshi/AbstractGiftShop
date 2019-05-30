@@ -1,23 +1,18 @@
 ﻿using AbstractGiftShopServiceDAL.BindingModels;
-using AbstractGiftShopServiceDAL.Interfaces;
 using AbstractGiftShopServiceDAL.ViewModel;
+using AbstractGiftShopView;
 using System;
 using System.Windows.Forms;
-using Unity;
-
 namespace AbstractGiftShopView
 {
     public partial class FormClient : Form
     {
-        [Dependency]
-        public new IUnityContainer Container { get; set; }
         public int Id { set { id = value; } }
-        private readonly ISClientService service;
         private int? id;
-        public FormClient(ISClientService service)
+
+        public FormClient()
         {
             InitializeComponent();
-            this.service = service;
         }
         private void FormClient_Load(object sender, EventArgs e)
         {
@@ -25,7 +20,8 @@ namespace AbstractGiftShopView
             {
                 try
                 {
-                    SClientViewModel view = service.GetElement(id.Value);
+                    SClientViewModel view = APIClient.GetRequest<SClientViewModel>("api/Client/Get/" + id.Value);
+                    textBoxFIO.Text = view.SClientFIO;
                     if (view != null)
                     {
                         textBoxFIO.Text = view.SClientFIO;
@@ -33,8 +29,7 @@ namespace AbstractGiftShopView
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK,
-                   MessageBoxIcon.Error);
+                    MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -50,18 +45,20 @@ namespace AbstractGiftShopView
             {
                 if (id.HasValue)
                 {
-                    service.UpdElement(new SClientBindingModel
-                    {
-                        Id = id.Value,
-                        SClientFIO = textBoxFIO.Text
-                    });
+                    APIClient.PostRequest<SClientBindingModel,
+                   bool>("api/Client/UpdElement", new SClientBindingModel
+                   {
+                       Id = id.Value,
+                       SClientFIO = textBoxFIO.Text
+                   });
                 }
                 else
                 {
-                    service.AddElement(new SClientBindingModel
-                    {
-                        SClientFIO = textBoxFIO.Text
-                    });
+                    APIClient.PostRequest<SClientBindingModel,
+                   bool>("api/Client/AddElement", new SClientBindingModel
+                   {
+                       SClientFIO = textBoxFIO.Text
+                   });
                 }
                 MessageBox.Show("Сохранение прошло успешно", "Сообщение",
                MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -75,6 +72,7 @@ namespace AbstractGiftShopView
             }
         }
         private void buttonCancel_Click(object sender, EventArgs e)
+
         {
             DialogResult = DialogResult.Cancel;
             Close();

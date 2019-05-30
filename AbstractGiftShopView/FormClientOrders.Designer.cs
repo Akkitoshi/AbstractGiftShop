@@ -43,7 +43,7 @@
             // 
             this.buttonMake.Location = new System.Drawing.Point(485, 4);
             this.buttonMake.Name = "buttonMake";
-            this.buttonMake.Size = new System.Drawing.Size(155, 19);
+            this.buttonMake.Size = new System.Drawing.Size(155, 26);
             this.buttonMake.TabIndex = 0;
             this.buttonMake.Text = "Сформировать";
             this.buttonMake.UseVisualStyleBackColor = true;
@@ -81,7 +81,7 @@
             // 
             this.buttonToPdf.Location = new System.Drawing.Point(656, 3);
             this.buttonToPdf.Name = "buttonToPdf";
-            this.buttonToPdf.Size = new System.Drawing.Size(155, 19);
+            this.buttonToPdf.Size = new System.Drawing.Size(155, 24);
             this.buttonToPdf.TabIndex = 5;
             this.buttonToPdf.Text = "В PDF";
             this.buttonToPdf.UseVisualStyleBackColor = true;
@@ -106,12 +106,12 @@
             // reportViewer
             // 
             this.reportViewer.LocalReport.ReportEmbeddedResource = "AbstractGiftShopView.ReportClientOrders.rdlc";
-            this.reportViewer.Location = new System.Drawing.Point(1, 30);
+            this.reportViewer.Location = new System.Drawing.Point(1, 37);
             this.reportViewer.Name = "reportViewer";
             this.reportViewer.ServerReport.BearerToken = null;
-            this.reportViewer.Size = new System.Drawing.Size(855, 315);
+            this.reportViewer.Size = new System.Drawing.Size(855, 308);
             this.reportViewer.TabIndex = 4;
-            // 
+            //
             // FormClientOrders
             // 
             this.ClientSize = new System.Drawing.Size(857, 334);

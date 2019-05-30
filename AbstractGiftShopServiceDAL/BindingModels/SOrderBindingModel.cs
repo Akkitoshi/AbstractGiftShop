@@ -1,11 +1,19 @@
-﻿namespace AbstractGiftShopServiceDAL.BindingModels
+﻿using System.Runtime.Serialization;
+
+namespace AbstractGiftShopServiceDAL.BindingModels
 {
+    [DataContract]
     public class SOrderBindingModel
- {
-    public int Id { get; set; }
-    public int SClientId { get; set; }
-    public int GiftId { get; set; }
-    public int Count { get; set; }
-    public decimal Sum { get; set; }
+    {
+        [DataMember]
+        public int Id { get; set; }
+        [DataMember]
+        public int SClientId { get; set; }
+        [DataMember]
+        public int GiftId { get; set; }
+        [DataMember]
+        public int Count { get; set; }
+        [DataMember]
+        public decimal Sum { get; set; }
 }
 }

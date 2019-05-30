@@ -1,12 +1,22 @@
-﻿namespace AbstractGiftShopServiceDAL.ViewModel
+﻿using System.Runtime.Serialization;
+
+namespace AbstractGiftShopServiceDAL.ViewModel
 {
-   public class SClientOrdersModel
+    [DataContract]
+    public class SClientOrdersModel
     {
+        [DataMember]
         public string SClientName { get; set; }
+        [DataMember]
         public string DateCreate { get; set; }
+        [DataMember]
         public string GiftName { get; set; }
+        [DataMember]
         public int Count { get; set; }
+        [DataMember]
         public decimal Sum { get; set; }
-        public string Status { get; set; }
+        [DataMember]
+        public string Status { get; set; }
+
     }
 }
