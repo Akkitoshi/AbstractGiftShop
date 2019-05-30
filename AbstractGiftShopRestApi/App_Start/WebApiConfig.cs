@@ -1,4 +1,4 @@
-using System.Web.Http;
+﻿using System.Web.Http;
 
 namespace AbstractGiftShopRestApi
 {
@@ -13,7 +13,7 @@ namespace AbstractGiftShopRestApi
 
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
-                routeTemplate: "api/{controller}/{action}/{id}",
+                routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
         }
