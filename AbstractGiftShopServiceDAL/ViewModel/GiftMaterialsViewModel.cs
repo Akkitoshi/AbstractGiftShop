@@ -13,6 +13,7 @@ namespace AbstractGiftShopServiceDAL.ViewModel
         [DataMember]
         public int MaterialsId { get; set; }
         [DataMember]
+        [DisplayName("Название материала")]
         public string MaterialsName { get; set; }
         [DataMember]
         public int Count { get; set; }

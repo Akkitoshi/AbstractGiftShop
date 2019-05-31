@@ -7,13 +7,13 @@ namespace AbstractShopServiceImplementDataBase.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class FirstMigration : IMigrationMetadata
+    public sealed partial class FourMigration2 : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(FirstMigration));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(FourMigration2));
         
         string IMigrationMetadata.Id
         {
-            get { return "201904130320235_FirstMigration"; }
+            get { return "201905310734524_FourMigration2"; }
         }
         
         string IMigrationMetadata.Source

@@ -4,12 +4,11 @@ using AbstractGiftShopServiceDAL.Interfaces;
 using AbstractGiftShopServiceDAL.ViewModel;
 using System;
 using System.Collections.Generic;
-using System.Data.Entity.SqlServer;
 using System.Data.Entity;
+using System.Data.Entity.SqlServer;
 using System.Linq;
-using AbstractGiftShopServiceImplementDataBase;
 
-namespace AbstractShopServiceImplementDataBase.Implementations
+namespace AbstractGiftShopServiceImplementDataBase.Implementations
 {
     public class MainServiceDB : IMainService
     {
@@ -29,16 +28,32 @@ namespace AbstractShopServiceImplementDataBase.Implementations
             SqlFunctions.DateName("mm", rec.DateCreate) + " " +
             SqlFunctions.DateName("yyyy", rec.DateCreate),
                 DateImplement = rec.DateImplement == null ? "" :
-            SqlFunctions.DateName("dd", rec.DateImplement.Value) + " " +
-            SqlFunctions.DateName("mm", rec.DateImplement.Value) + " " +
-            SqlFunctions.DateName("yyyy", rec.DateImplement.Value),
+            SqlFunctions.DateName("dd",
+           rec.DateImplement.Value) + " " +
+            SqlFunctions.DateName("mm",
+           rec.DateImplement.Value) + " " +
+            SqlFunctions.DateName("yyyy",
+           rec.DateImplement.Value),
                 Status = rec.Status.ToString(),
                 Count = rec.Count,
                 Sum = rec.Sum,
                 SClientFIO = rec.SClient.SClientFIO,
-                GiftName = rec.Gift.GiftName
+                GiftName = rec.Gift.GiftName,
+                ImplementerId = rec.ImplementerId,
+                ImplementerFIO = rec.Implementer.ImplementerFIO
             })
             .ToList();
+            return result;
+        }
+       public List<SOrderViewModel> GetFreeOrders()
+        {
+            List<SOrderViewModel> result = context.SOrders
+                .Where(x => x.Status == SOrderStatus.Принят || x.Status == SOrderStatus.НедостаточноРесурсов)
+                .Select(rec => new SOrderViewModel
+                {
+                    Id = rec.Id
+                })
+                .ToList();
             return result;
         }
         public void CreateOrder(SOrderBindingModel model)
@@ -56,12 +71,12 @@ namespace AbstractShopServiceImplementDataBase.Implementations
         }
         public void TakeOrderInWork(SOrderBindingModel model)
         {
-
             using (var transaction = context.Database.BeginTransaction())
             {
                 try
                 {
-                    SOrder element = context.SOrders.FirstOrDefault(rec => rec.Id == model.Id);
+                    SOrder element = context.SOrders.FirstOrDefault(rec => rec.Id ==
+                    model.Id);
                     if (element == null)
                     {
                         throw new Exception("Элемент не найден");
@@ -70,36 +85,40 @@ namespace AbstractShopServiceImplementDataBase.Implementations
                     {
                         throw new Exception("Заказ не в статусе \"Принят\"");
                     }
-                    var giftMaterialss = context.GiftMaterialss.Include(rec => rec.Materials).Where(rec => rec.GiftId == element.GiftId);
-                    // списываем 
-                    foreach (var GiftMaterials in giftMaterialss)
+                    var giftMaterialss = context.GiftMaterialss.Include(rec =>
+                    rec.Materials).Where(rec => rec.GiftId == element.GiftId);
+                    // списываем
+                    foreach (var giftMaterials in giftMaterialss)
                     {
-                        int countOnStocks = GiftMaterials.Count * element.Count;
-                        var stockMaterialss = context.StockMaterialss.Where(rec => rec.MaterialsId == GiftMaterials.MaterialsId);
+                        int countOnStock = giftMaterials.Count * element.Count;
+                        var stockMaterialss = context.StockMaterialss.Where(rec =>
+                        rec.MaterialsId == giftMaterials.MaterialsId);
                         foreach (var stockMaterials in stockMaterialss)
                         {
-                            // компонентов на одном слкаде может не хватать 
-                            if (stockMaterials.Count >= countOnStocks)
+                            // компонентов на одном слкаде может не хватать
+                            if (stockMaterials.Count >= countOnStock)
                             {
-                                stockMaterials.Count -= countOnStocks;
-                                countOnStocks = 0;
+                                stockMaterials.Count -= countOnStock;
+                                countOnStock = 0;
                                 context.SaveChanges();
                                 break;
                             }
                             else
                             {
-                                countOnStocks -= stockMaterials.Count;
+                                countOnStock -= stockMaterials.Count;
                                 stockMaterials.Count = 0;
                                 context.SaveChanges();
                             }
                         }
-                        if (countOnStocks > 0)
+                        if (countOnStock > 0)
                         {
-                            throw new Exception("Не достаточно компонента " + GiftMaterials.Materials.MaterialsName + " требуется " + GiftMaterials.Count + ", не хватает " + countOnStocks);
+                            throw new Exception("Не достаточно материала " +
+                            giftMaterials.Materials.MaterialsName + " требуется " + giftMaterials.Count + ", нехватает " + countOnStock);
                         }
                     }
                     element.DateImplement = DateTime.Now;
                     element.Status = SOrderStatus.Выполняется;
+                    element.ImplementerId = model.ImplementerId;
                     context.SaveChanges();
                     transaction.Commit();
                 }
@@ -114,7 +133,6 @@ namespace AbstractShopServiceImplementDataBase.Implementations
         {
             SOrder element = context.SOrders.FirstOrDefault(rec => rec.Id == model.Id);
             if (element == null)
-
             {
                 throw new Exception("Элемент не найден");
             }
@@ -141,7 +159,8 @@ namespace AbstractShopServiceImplementDataBase.Implementations
         }
         public void PutMaterialsOnStock(StockMaterialsBindingModel model)
         {
-            StockMaterials element = context.StockMaterialss.FirstOrDefault(rec => rec.SStockId == model.SStockId && rec.MaterialsId == model.MaterialsId);
+            StockMaterials element = context.StockMaterialss.FirstOrDefault(rec =>
+            rec.SStockId == model.SStockId && rec.MaterialsId == model.MaterialsId);
             if (element != null)
             {
                 element.Count += model.Count;

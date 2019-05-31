@@ -620,7 +620,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>=Fields!Sum.Value</Value>
+                    <Value>=Sum(Fields!Sum.Value, "DataSetOrders")</Value>
                     <Style />
                   </TextRun>
                 </TextRuns>
@@ -629,7 +629,7 @@
             </Paragraphs>
             <rd:DefaultName>Sum1</rd:DefaultName>
             <Top>4.67995cm</Top>
-            <Left>14.1196cm</Left>
+            <Left>14.39016cm</Left>
             <Height>0.6cm</Height>
             <Width>2.5cm</Width>
             <ZIndex>4</ZIndex>

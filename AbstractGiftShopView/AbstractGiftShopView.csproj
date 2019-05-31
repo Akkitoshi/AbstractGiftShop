@@ -130,6 +130,18 @@
     <Compile Include="FormGifts.Designer.cs">
       <DependentUpon>FormGifts.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormImplementer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormImplementer.Designer.cs">
+      <DependentUpon>FormImplementer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormImplementers.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormImplementers.Designer.cs">
+      <DependentUpon>FormImplementers.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -186,6 +198,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormCreateOrder.resx">
       <DependentUpon>FormCreateOrder.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="FormGift.resx">
       <DependentUpon>FormGift.cs</DependentUpon>
@@ -195,6 +208,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormGifts.resx">
       <DependentUpon>FormGifts.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormImplementer.resx">
+      <DependentUpon>FormImplementer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormImplementers.resx">
+      <DependentUpon>FormImplementers.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
@@ -228,6 +247,7 @@
     </Compile>
     <EmbeddedResource Include="ReportClientOrders.rdlc" />
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\AbstractGiftShopModel.StockMaterials.datasource" />
     <None Include="Properties\DataSources\AbstractGiftShopServiceDAL.BindingModel.MaterialsBindingModel.datasource" />
     <None Include="Properties\DataSources\AbstractGiftShopServiceDAL.BindingModels.GiftBindingModel.datasource" />
     <None Include="Properties\DataSources\AbstractGiftShopServiceDAL.BindingModels.GiftMaterialsBindingModel.datasource" />

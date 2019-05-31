@@ -15,6 +15,8 @@ namespace AbstractGiftShopModel
 
         public int GiftId { get; set; }
 
+        public int? ImplementerId { get; set; }
+
         public int Count { get; set; }
 
         public decimal Sum { get; set; }
@@ -26,6 +28,7 @@ namespace AbstractGiftShopModel
         public DateTime? DateImplement { get; set; }
         public virtual SClient SClient { get; set; }
         public virtual Gift Gift { get; set; }
+        public virtual Implementer Implementer { get; set; }
     }
 }
 

@@ -15,10 +15,10 @@ using System.Linq;
 
 namespace AbstractGiftShopServiceImplementDataBase.Implementations
 {
-    public class ReportServiceDB : IReportService
+    public class ImplemeneterServiceDB : IReportService
     {
         private AbstractGiftShopDbContext context;
-        public ReportServiceDB(AbstractGiftShopDbContext context)
+        public ImplemeneterServiceDB(AbstractGiftShopDbContext context)
         {
             this.context = context;
         }

@@ -28,14 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
-            this.nameTextBox = new System.Windows.Forms.TextBox();
+            this.TextBoxName = new System.Windows.Forms.TextBox();
             this.Материалы = new System.Windows.Forms.GroupBox();
             this.dataGridView = new System.Windows.Forms.DataGridView();
             this.buttonSave = new System.Windows.Forms.Button();
             this.buttonCancel = new System.Windows.Forms.Button();
+            this.stockMaterialsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.Материалы.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.stockMaterialsBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -47,29 +50,32 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Название";
             // 
-            // nameTextBox
+            // TextBoxName
             // 
-            this.nameTextBox.Location = new System.Drawing.Point(76, 10);
-            this.nameTextBox.Name = "nameTextBox";
-            this.nameTextBox.Size = new System.Drawing.Size(210, 20);
-            this.nameTextBox.TabIndex = 1;
+            this.TextBoxName.Location = new System.Drawing.Point(76, 10);
+            this.TextBoxName.Name = "TextBoxName";
+            this.TextBoxName.Size = new System.Drawing.Size(210, 20);
+            this.TextBoxName.TabIndex = 1;
             // 
             // Материалы
             // 
             this.Материалы.Controls.Add(this.dataGridView);
             this.Материалы.Location = new System.Drawing.Point(16, 43);
             this.Материалы.Name = "Материалы";
-            this.Материалы.Size = new System.Drawing.Size(270, 244);
+            this.Материалы.Size = new System.Drawing.Size(360, 244);
             this.Материалы.TabIndex = 2;
             this.Материалы.TabStop = false;
             this.Материалы.Text = "Материалы";
             // 
             // dataGridView
             // 
+            this.dataGridView.AllowUserToAddRows = false;
+            this.dataGridView.AllowUserToDeleteRows = false;
             this.dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView.Location = new System.Drawing.Point(0, 19);
             this.dataGridView.Name = "dataGridView";
-            this.dataGridView.Size = new System.Drawing.Size(264, 218);
+            this.dataGridView.ReadOnly = true;
+            this.dataGridView.Size = new System.Drawing.Size(343, 218);
             this.dataGridView.TabIndex = 0;
             // 
             // buttonSave
@@ -92,21 +98,26 @@
             this.buttonCancel.UseVisualStyleBackColor = true;
             this.buttonCancel.Click += new System.EventHandler(this.buttonCancel_Click);
             // 
+            // stockMaterialsBindingSource
+            // 
+            this.stockMaterialsBindingSource.DataSource = typeof(AbstractGiftShopModel.StockMaterials);
+            // 
             // FormStock
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(299, 334);
+            this.ClientSize = new System.Drawing.Size(414, 334);
             this.Controls.Add(this.buttonCancel);
             this.Controls.Add(this.buttonSave);
             this.Controls.Add(this.Материалы);
-            this.Controls.Add(this.nameTextBox);
+            this.Controls.Add(this.TextBoxName);
             this.Controls.Add(this.label1);
             this.Name = "FormStock";
             this.Text = "Склад";
             this.Load += new System.EventHandler(this.FormStock_Load);
             this.Материалы.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.stockMaterialsBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -115,10 +126,11 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox nameTextBox;
+        private System.Windows.Forms.TextBox TextBoxName;
         private System.Windows.Forms.GroupBox Материалы;
         private System.Windows.Forms.Button buttonSave;
         private System.Windows.Forms.Button buttonCancel;
         private System.Windows.Forms.DataGridView dataGridView;
+        private System.Windows.Forms.BindingSource stockMaterialsBindingSource;
     }
 }

@@ -113,6 +113,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\ClientController.cs" />
     <Compile Include="Controllers\GiftController.cs" />
+    <Compile Include="Controllers\ImplementerController.cs" />
     <Compile Include="Controllers\MainController.cs" />
     <Compile Include="Controllers\MaterialsController.cs" />
     <Compile Include="Controllers\ReportController.cs" />
@@ -126,6 +127,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="Services\WorkImplementer.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App.config">

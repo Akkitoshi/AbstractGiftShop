@@ -64,7 +64,7 @@ namespace AbstractGiftShopView
                     int id = Convert.ToInt32(dataGridView.SelectedRows[0].Cells[0].Value);
                     try
                     {
-                        APIClient.PostRequest<MaterialsBindingModel, bool>("api/Material/DelElement", new MaterialsBindingModel { Id = id });
+                        APIClient.PostRequest<MaterialsBindingModel, bool>("api/Materials/DelElement", new MaterialsBindingModel { Id = id });
                     }
                     catch (Exception ex)
                     {

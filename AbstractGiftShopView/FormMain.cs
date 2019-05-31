@@ -12,6 +12,10 @@ namespace AbstractGiftShopView
         {
             InitializeComponent();
         }
+        private void FormMain_Load(object sender, EventArgs e)
+        {
+            LoadData();
+        }
         private void LoadData()
         {
             try
@@ -132,7 +136,7 @@ namespace AbstractGiftShopView
             {
                 try
                 {
-                    APIClient.PostRequest<ReportBindingModel, bool>("api/Report/SaveGiftPrice", new ReportBindingModel
+                    APIClient.PostRequest<ReportBindingModel, bool>("api/Edition/SaveItemPrice", new ReportBindingModel
                     {
                         FileName = sfd.FileName
                     });
@@ -154,7 +158,23 @@ namespace AbstractGiftShopView
             var form = new FormClientOrders();
             form.ShowDialog();
         }
-
+        private void исполнителиToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var form = new FormImplementers();
+            form.ShowDialog();
+        }
+        private void запускработToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                APIClient.PostRequest<int?, bool>("api/Main/StartWork", null);
+                MessageBox.Show("Выполнено", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
 
     }
 }

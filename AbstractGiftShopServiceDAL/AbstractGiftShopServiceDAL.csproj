@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BindingModels\ImplementerBindingModel.cs" />
     <Compile Include="BindingModels\MaterialsBindingModel.cs" />
     <Compile Include="BindingModels\ReportBindingModel.cs" />
     <Compile Include="BindingModels\SClientBindingModel.cs" />
@@ -51,6 +52,7 @@
     <Compile Include="BindingModels\SOrderBindingModel.cs" />
     <Compile Include="BindingModels\SStockBindingModel.cs" />
     <Compile Include="BindingModels\StockMaterialsBindingModel.cs" />
+    <Compile Include="Interfaces\IImplementerService.cs" />
     <Compile Include="Interfaces\IReportService.cs" />
     <Compile Include="Interfaces\ISClientService.cs" />
     <Compile Include="Interfaces\IMainService.cs" />
@@ -58,6 +60,7 @@
     <Compile Include="Interfaces\IMaterialsService.cs" />
     <Compile Include="Interfaces\ISStockService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModel\ImplementerViewModel.cs" />
     <Compile Include="ViewModel\SClientOrdersModel.cs" />
     <Compile Include="ViewModel\SClientViewModel.cs" />
     <Compile Include="ViewModel\GiftMaterialsViewModel.cs" />

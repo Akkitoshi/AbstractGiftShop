@@ -20,3 +20,4 @@ namespace AbstractGiftShopServiceDAL.ViewModel
         public int Count { get; set; }
     }
 }
+
