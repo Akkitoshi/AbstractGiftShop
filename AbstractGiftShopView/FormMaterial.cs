@@ -19,7 +19,7 @@ namespace AbstractGiftShopView
             {
                 try
                 {
-                    MaterialsViewModel view = APIClient.GetRequest<MaterialsViewModel>("api/Material/Get/" + id.Value); ;
+                    MaterialsViewModel view = APIClient.GetRequest<MaterialsViewModel>("api/Materials/Get/" + id.Value); ;
                     if (view != null)
                     {
                         textBoxName.Text = view.MaterialsName;
@@ -42,7 +42,7 @@ namespace AbstractGiftShopView
             {
                 if (id.HasValue)
                 {
-                    APIClient.PostRequest<MaterialsBindingModel, bool>("api/Material/UpdElement", new MaterialsBindingModel
+                    APIClient.PostRequest<MaterialsBindingModel, bool>("api/Materials/UpdElement", new MaterialsBindingModel
                     {
                         Id = id.Value,
                         MaterialsName = textBoxName.Text
@@ -50,7 +50,7 @@ namespace AbstractGiftShopView
                 }
                 else
                 {
-                    APIClient.PostRequest<MaterialsBindingModel, bool>("api/Material/AddElement", new MaterialsBindingModel
+                    APIClient.PostRequest<MaterialsBindingModel, bool>("api/Materials/AddElement", new MaterialsBindingModel
                     {
                         MaterialsName = textBoxName.Text
                     });

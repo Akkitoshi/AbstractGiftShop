@@ -12,6 +12,8 @@ namespace AbstractGiftShopServiceDAL.BindingModels
         [DataMember]
         public int MaterialsId { get; set; }
         [DataMember]
+        public int MaterialsName { get; set; }
+        [DataMember]
         public int Count { get; set; }
     }
 }

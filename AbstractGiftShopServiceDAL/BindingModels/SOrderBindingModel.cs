@@ -12,6 +12,8 @@ namespace AbstractGiftShopServiceDAL.BindingModels
         [DataMember]
         public int GiftId { get; set; }
         [DataMember]
+        public int? ImplementerId { get; set; }
+        [DataMember]
         public int Count { get; set; }
         [DataMember]
         public decimal Sum { get; set; }

@@ -19,6 +19,11 @@ namespace AbstractGiftShopServiceDAL.ViewModel
         [DisplayName("Подарок")]
         public string GiftName { get; set; }
         [DataMember]
+        public int? ImplementerId { get; set; }
+        [DataMember]
+        [DisplayName("Исполнитель")]
+        public string ImplementerFIO { get; set; }
+        [DataMember]
         [DisplayName("Количество")]
         public int Count { get; set; }
         [DataMember]

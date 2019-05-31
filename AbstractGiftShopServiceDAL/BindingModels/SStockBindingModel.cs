@@ -7,6 +7,7 @@ namespace AbstractGiftShopServiceDAL.BindingModels
     {
         [DataMember]
         public int Id { get; set; }
+
         [DataMember]
         public string SStockName { get; set; }
     }

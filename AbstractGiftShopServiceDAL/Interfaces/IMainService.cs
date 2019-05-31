@@ -7,6 +7,7 @@ namespace AbstractGiftShopServiceDAL.Interfaces
     public interface IMainService
     {
         List<SOrderViewModel> GetList();
+        List<SOrderViewModel> GetFreeOrders();
         void CreateOrder(SOrderBindingModel model);
         void TakeOrderInWork(SOrderBindingModel model);
         void FinishOrder(SOrderBindingModel model);

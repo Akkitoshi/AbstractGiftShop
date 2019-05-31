@@ -49,6 +49,7 @@ namespace AbstractGiftShopRestApi
             // container.RegisterType<IProductRepository, ProductRepository>();
             container.RegisterType<DbContext, AbstractGiftShopDbContext>(new
 HierarchicalLifetimeManager());
+            container.RegisterType<IImplementerService, ImplementerServiceDB>(new HierarchicalLifetimeManager());
             container.RegisterType<ISClientService, SClientServiceDB>(new
            HierarchicalLifetimeManager());
             container.RegisterType<IMaterialsService, MaterialsServiceDB>(new
@@ -59,8 +60,9 @@ HierarchicalLifetimeManager());
            HierarchicalLifetimeManager());
             container.RegisterType<IMainService, MainServiceDB>(new
            HierarchicalLifetimeManager());
-            container.RegisterType<IReportService, ReportServiceDB>(new
+            container.RegisterType<IReportService, ImplemeneterServiceDB>(new
            HierarchicalLifetimeManager());
+
         }
     }
 }

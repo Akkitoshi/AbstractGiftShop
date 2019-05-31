@@ -7,7 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace AbstractShopServiceImplementList.Implementations
+namespace AbstractGiftShopServiceImplementList.Implementations
 {
     public class MainServiceList : IMainService
     {
@@ -19,22 +19,30 @@ namespace AbstractShopServiceImplementList.Implementations
         public List<SOrderViewModel> GetList()
         {
             List<SOrderViewModel> result = source.SOrders
-            .Select(rec => new SOrderViewModel
-            {
-                Id = rec.Id,
-                SClientId = rec.SClientId,
-                GiftId = rec.GiftId,
-                DateCreate = rec.DateCreate.ToLongDateString(),
-                DateImplement = rec.DateImplement?.ToLongDateString(),
-                Status = rec.Status.ToString(),
-                Count = rec.Count,
-                Sum = rec.Sum,
-                SClientFIO = source.SClients.FirstOrDefault(recC => recC.Id ==
-     rec.SClientId)?.SClientFIO,
-                GiftName = source.Gifts.FirstOrDefault(recP => recP.Id ==
-    rec.GiftId)?.GiftName,
-            })
-            .ToList();
+                .Select(rec => new SOrderViewModel
+                {
+                    Id = rec.Id,
+                    SClientId = rec.SClientId,
+                    GiftId = rec.GiftId,
+                    DateCreate = rec.DateCreate.ToLongDateString(),
+                    DateImplement = rec.DateImplement?.ToLongDateString(),
+                    Status = rec.Status.ToString(),
+                    Count = rec.Count,
+                    Sum = rec.Sum,
+                    SClientFIO = source.SClients.FirstOrDefault(recC => recC.Id == rec.SClientId)?.SClientFIO,
+                    GiftName = source.Gifts.FirstOrDefault(recP => recP.Id == rec.GiftId)?.GiftName,
+                })
+                .ToList();
+            return result;
+        }
+        public List<SOrderViewModel> GetFreeOrders()
+        {
+            List<SOrderViewModel> result = source.SOrders
+                .Select(rec => new SOrderViewModel
+                {
+                    Id = rec.Id
+                })
+                .ToList();
             return result;
         }
         public void CreateOrder(SOrderBindingModel model)
@@ -63,47 +71,45 @@ namespace AbstractShopServiceImplementList.Implementations
                 throw new Exception("Заказ не в статусе \"Принят\"");
             }
             // смотрим по количеству компонентов на складах
-            var giftMaterialss = source.GiftMaterialss.Where(rec => rec.GiftId
-           == element.GiftId);
-            foreach (var giftMaterials in giftMaterialss)
+            var GiftMaterialss = source.GiftMaterialss.Where(rec => rec.GiftId == element.GiftId);
+            foreach (var GiftMaterials in GiftMaterialss)
             {
-                int countOnStocks = source.StockMaterialss
-                .Where(rec => rec.MaterialsId ==
-               giftMaterials.MaterialsId)
-               .Sum(rec => rec.Count);
-                if (countOnStocks < giftMaterials.Count * element.Count)
+                int countOnStock = source.StockMaterialss
+                    .Where(rec => rec.MaterialsId == GiftMaterials.MaterialsId)
+                    .Sum(rec => rec.Count);
+                if (countOnStock < GiftMaterials.Count * element.Count)
                 {
-                    var materialsName = source.Materialss.FirstOrDefault(rec => rec.Id ==
-                   giftMaterials.MaterialsId);
-                    throw new Exception("Не достаточно материала " +
-                   materialsName?.MaterialsName + " требуется " + (giftMaterials.Count * element.Count) +
-                   ", в наличии " + countOnStocks);
+                    var componentName = source.Materialss.FirstOrDefault(rec => rec.Id ==
+                   GiftMaterials.MaterialsId);
+                    throw new Exception("Не достаточно компонента " +
+                   componentName?.MaterialsName + " требуется " + (GiftMaterials.Count * element.Count) +
+                   ", в наличии " + countOnStock);
                 }
             }
             // списываем
-            foreach (var giftMaterials in giftMaterialss)
+            foreach (var GiftMaterials in GiftMaterialss)
             {
-                int countOnStocks = giftMaterials.Count * element.Count;
+                int countOnStock = GiftMaterials.Count * element.Count;
                 var stockMaterialss = source.StockMaterialss.Where(rec => rec.MaterialsId
-               == giftMaterials.MaterialsId);
-                foreach (var stockMaterials in stockMaterialss)
+               == GiftMaterials.MaterialsId);
+                foreach (var StockMaterials in stockMaterialss)
                 {
-                    // материалов на одном слкаде может не хватать
-                    if (stockMaterials.Count >= countOnStocks)
+                    // компонентов на одном слкаде может не хватать
+                    if (StockMaterials.Count >= countOnStock)
                     {
-                        stockMaterials.Count -= countOnStocks;
+                        StockMaterials.Count -= countOnStock;
                         break;
                     }
                     else
                     {
-                        countOnStocks -= stockMaterials.Count;
-                        stockMaterials.Count = 0;
+                        countOnStock -= StockMaterials.Count;
+                        StockMaterials.Count = 0;
                     }
                 }
             }
             element.DateImplement = DateTime.Now;
             element.Status = SOrderStatus.Выполняется;
-        }
+        }
         public void FinishOrder(SOrderBindingModel model)
         {
             SOrder element = source.SOrders.FirstOrDefault(rec => rec.Id == model.Id);
@@ -116,7 +122,8 @@ namespace AbstractShopServiceImplementList.Implementations
                 throw new Exception("Заказ не в статусе \"Выполняется\"");
             }
             element.Status = SOrderStatus.Готов;
-        }
+
+        }
         public void PayOrder(SOrderBindingModel model)
         {
             SOrder element = source.SOrders.FirstOrDefault(rec => rec.Id == model.Id);

@@ -19,4 +19,5 @@ namespace AbstractGiftShopModel
 
         public virtual Materials Materials { get; set; }
     }
-}
+}
+
