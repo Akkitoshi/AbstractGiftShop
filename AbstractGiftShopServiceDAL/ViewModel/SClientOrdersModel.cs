@@ -6,7 +6,7 @@ namespace AbstractGiftShopServiceDAL.ViewModel
     public class SClientOrdersModel
     {
         [DataMember]
-        public string SClientName { get; set; }
+        public string SSClientFIO { get; set; }
         [DataMember]
         public string DateCreate { get; set; }
         [DataMember]

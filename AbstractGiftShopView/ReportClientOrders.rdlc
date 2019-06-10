@@ -64,8 +64,8 @@
           <DataField>GiftName</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="SClientName">
-          <DataField>SClientName</DataField>
+        <Field Name="SSClientFIO">
+          <DataField>SSClientFIO</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="Status">
@@ -339,21 +339,21 @@
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="SClientName">
+                        <Textbox Name="SSClientFIO">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!SClientName.Value</Value>
+                                  <Value>=Fields!SSClientFIO.Value</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>SClientName</rd:DefaultName>
+                          <rd:DefaultName>SSClientFIO</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>

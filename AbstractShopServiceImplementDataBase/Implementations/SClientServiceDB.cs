@@ -7,9 +7,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace AbstractShopServiceImplementDataBase.Implementations
+namespace AbstractGiftShopServiceImplementDataBase.Implementations
 {
-   public class SClientServiceDB : ISClientService
+    public class SClientServiceDB : ISClientService
     {
         private AbstractGiftShopDbContext context;
         public SClientServiceDB(AbstractGiftShopDbContext context)
@@ -22,7 +22,8 @@ namespace AbstractShopServiceImplementDataBase.Implementations
            SClientViewModel
             {
                 Id = rec.Id,
-                SClientFIO = rec.SClientFIO
+                SClientFIO = rec.SClientFIO,
+                Mail = rec.Mail
             })
             .ToList();
             return result;
@@ -35,7 +36,18 @@ namespace AbstractShopServiceImplementDataBase.Implementations
                 return new SClientViewModel
                 {
                     Id = element.Id,
-                    SClientFIO = element.SClientFIO
+                    SClientFIO = element.SClientFIO,
+                    Mail = element.Mail,
+                    Messages = context.MessageInfos
+                .Where(recM => recM.SClientId == element.Id)
+               .Select(recM => new MessageInfoViewModel
+               {
+                   MessageId = recM.MessageId,
+                   DateDelivery = recM.DateDelivery,
+                   Subject = recM.Subject,
+                   Body = recM.Body
+               })
+               .ToList()
                 };
             }
             throw new Exception("Элемент не найден");
@@ -50,7 +62,8 @@ namespace AbstractShopServiceImplementDataBase.Implementations
             }
             context.SClients.Add(new SClient
             {
-                SClientFIO = model.SClientFIO
+                SClientFIO = model.SClientFIO,
+                Mail = model.Mail
             });
             context.SaveChanges();
         }
@@ -68,6 +81,7 @@ namespace AbstractShopServiceImplementDataBase.Implementations
                 throw new Exception("Элемент не найден");
             }
             element.SClientFIO = model.SClientFIO;
+            element.Mail = model.Mail;
             context.SaveChanges();
         }
         public void DelElement(int id)

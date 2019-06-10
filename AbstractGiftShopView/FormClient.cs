@@ -1,7 +1,7 @@
 ﻿using AbstractGiftShopServiceDAL.BindingModels;
 using AbstractGiftShopServiceDAL.ViewModel;
-using AbstractGiftShopView;
 using System;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 namespace AbstractGiftShopView
 {
@@ -9,7 +9,6 @@ namespace AbstractGiftShopView
     {
         public int Id { set { id = value; } }
         private int? id;
-
         public FormClient()
         {
             InitializeComponent();
@@ -20,16 +19,24 @@ namespace AbstractGiftShopView
             {
                 try
                 {
-                    SClientViewModel view = APIClient.GetRequest<SClientViewModel>("api/Client/Get/" + id.Value);
-                    textBoxFIO.Text = view.SClientFIO;
-                    if (view != null)
-                    {
-                        textBoxFIO.Text = view.SClientFIO;
-                    }
+                    SClientViewModel client =
+                   APIClient.GetRequest<SClientViewModel>("api/Client/Get/" + id.Value);
+                    textBoxFIO.Text = client.SClientFIO;
+                    textBoxMail.Text = client.Mail;
+                    dataGridView.DataSource = client.Messages;
+                    dataGridView.Columns[0].Visible = false;
+                    dataGridView.Columns[1].Visible = false;
+                    dataGridView.Columns[4].AutoSizeMode =
+                    DataGridViewAutoSizeColumnMode.Fill;
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                while (ex.InnerException != null)
+                    {
+                        ex = ex.InnerException;
+                    }
+                    MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
                 }
             }
         }
@@ -41,40 +48,43 @@ namespace AbstractGiftShopView
                MessageBoxIcon.Error);
                 return;
             }
-            try
+            string fio = textBoxFIO.Text;
+            string mail = textBoxMail.Text;
+            if (!string.IsNullOrEmpty(mail))
             {
-                if (id.HasValue)
+                if (!Regex.IsMatch(mail, @"(\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*)"))
                 {
-                    APIClient.PostRequest<SClientBindingModel,
-                   bool>("api/Client/UpdElement", new SClientBindingModel
-                   {
-                       Id = id.Value,
-                       SClientFIO = textBoxFIO.Text
-                   });
+                    MessageBox.Show("Неверный формат для электронной почты", "Ошибка",
+                   MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
                 }
-                else
-                {
-                    APIClient.PostRequest<SClientBindingModel,
-                   bool>("api/Client/AddElement", new SClientBindingModel
-                   {
-                       SClientFIO = textBoxFIO.Text
-                   });
-                }
-                MessageBox.Show("Сохранение прошло успешно", "Сообщение",
-               MessageBoxButtons.OK, MessageBoxIcon.Information);
-                DialogResult = DialogResult.OK;
-                Close();
             }
-            catch (Exception ex)
+            if (id.HasValue)
             {
-                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK,
-               MessageBoxIcon.Error);
+                APIClient.PostRequest<SClientBindingModel,
+               bool>("api/Client/UpdElement", new SClientBindingModel
+               {
+                   Id = id.Value,
+                   Mail = mail,
+                   SClientFIO = fio
+               });
             }
+            else
+            {
+                APIClient.PostRequest<SClientBindingModel,
+               bool>("api/Client/AddElement", new SClientBindingModel
+               {
+                   Mail = mail,
+                   SClientFIO = fio
+               });
+            }
+            MessageBox.Show("Сохранение прошло успешно", "Сообщение",
+           MessageBoxButtons.OK, MessageBoxIcon.Information);
+            DialogResult = DialogResult.OK;
+            Close();
         }
         private void buttonCancel_Click(object sender, EventArgs e)
-
         {
-            DialogResult = DialogResult.Cancel;
             Close();
         }
     }

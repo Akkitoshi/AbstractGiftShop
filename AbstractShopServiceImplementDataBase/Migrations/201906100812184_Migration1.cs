@@ -3,7 +3,7 @@ namespace AbstractShopServiceImplementDataBase.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class FirtsMigration : DbMigration
+    public partial class Migration1 : DbMigration
     {
         public override void Up()
         {
@@ -101,25 +101,45 @@ namespace AbstractShopServiceImplementDataBase.Migrations
                     {
                         Id = c.Int(nullable: false, identity: true),
                         SClientFIO = c.String(nullable: false),
+                        Mail = c.String(),
                     })
                 .PrimaryKey(t => t.Id);
+            
+            CreateTable(
+                "dbo.MessageInfoes",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        MessageId = c.String(),
+                        FromMailAddress = c.String(),
+                        Subject = c.String(),
+                        Body = c.String(),
+                        DateDelivery = c.DateTime(nullable: false),
+                        SClientId = c.Int(),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.SClients", t => t.SClientId)
+                .Index(t => t.SClientId);
             
         }
         
         public override void Down()
         {
             DropForeignKey("dbo.SOrders", "SClientId", "dbo.SClients");
+            DropForeignKey("dbo.MessageInfoes", "SClientId", "dbo.SClients");
             DropForeignKey("dbo.SOrders", "ImplementerId", "dbo.Implementers");
             DropForeignKey("dbo.SOrders", "GiftId", "dbo.Gifts");
             DropForeignKey("dbo.StockMaterials", "SStockId", "dbo.SStocks");
             DropForeignKey("dbo.StockMaterials", "MaterialsId", "dbo.Materials");
             DropForeignKey("dbo.GiftMaterials", "MaterialsId", "dbo.Materials");
+            DropIndex("dbo.MessageInfoes", new[] { "SClientId" });
             DropIndex("dbo.SOrders", new[] { "ImplementerId" });
             DropIndex("dbo.SOrders", new[] { "GiftId" });
             DropIndex("dbo.SOrders", new[] { "SClientId" });
             DropIndex("dbo.StockMaterials", new[] { "MaterialsId" });
             DropIndex("dbo.StockMaterials", new[] { "SStockId" });
             DropIndex("dbo.GiftMaterials", new[] { "MaterialsId" });
+            DropTable("dbo.MessageInfoes");
             DropTable("dbo.SClients");
             DropTable("dbo.Implementers");
             DropTable("dbo.SOrders");

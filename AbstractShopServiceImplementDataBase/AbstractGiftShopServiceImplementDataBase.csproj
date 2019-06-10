@@ -52,6 +52,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -69,39 +70,19 @@
     <Compile Include="Implementations\ImplementerServiceDB.cs" />
     <Compile Include="Implementations\MainServiceDB.cs" />
     <Compile Include="Implementations\MaterialsServiceDB.cs" />
+    <Compile Include="Implementations\MessageInfoServiceDB.cs" />
     <Compile Include="Implementations\ReportServiceDB.cs" />
     <Compile Include="Implementations\SClientServiceDB.cs" />
     <Compile Include="Implementations\SStockServiceDB.cs" />
-    <Compile Include="Migrations\201905301111134_FirtsMigration.cs" />
-    <Compile Include="Migrations\201905301111134_FirtsMigration.Designer.cs">
-      <DependentUpon>201905301111134_FirtsMigration.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201905310706345_SecondMigration.cs" />
-    <Compile Include="Migrations\201905310706345_SecondMigration.Designer.cs">
-      <DependentUpon>201905310706345_SecondMigration.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201905310726322_FourMigration.cs" />
-    <Compile Include="Migrations\201905310726322_FourMigration.Designer.cs">
-      <DependentUpon>201905310726322_FourMigration.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201905310734524_FourMigration2.cs" />
-    <Compile Include="Migrations\201905310734524_FourMigration2.Designer.cs">
-      <DependentUpon>201905310734524_FourMigration2.cs</DependentUpon>
+    <Compile Include="Migrations\201906100812184_Migration1.cs" />
+    <Compile Include="Migrations\201906100812184_Migration1.Designer.cs">
+      <DependentUpon>201906100812184_Migration1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Migrations\201905301111134_FirtsMigration.resx">
-      <DependentUpon>201905301111134_FirtsMigration.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201905310706345_SecondMigration.resx">
-      <DependentUpon>201905310706345_SecondMigration.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201905310726322_FourMigration.resx">
-      <DependentUpon>201905310726322_FourMigration.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201905310734524_FourMigration2.resx">
-      <DependentUpon>201905310734524_FourMigration2.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201906100812184_Migration1.resx">
+      <DependentUpon>201906100812184_Migration1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

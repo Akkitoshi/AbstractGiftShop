@@ -256,7 +256,7 @@ namespace AbstractGiftShopServiceImplementDataBase.Implementations
            rec.DateCreate <= model.DateTo)
             .Select(rec => new SClientOrdersModel
             {
-                SClientName = rec.SClient.SClientFIO,
+                SSClientFIO = rec.SClient.SClientFIO,
                 DateCreate = SqlFunctions.DateName("dd", rec.DateCreate)
            + " " +
             SqlFunctions.DateName("mm", rec.DateCreate) +
@@ -347,7 +347,7 @@ namespace AbstractGiftShopServiceImplementDataBase.Implementations
             var fontForCells = new iTextSharp.text.Font(baseFont, 10);
             for (int i = 0; i < list.Count; i++)
             {
-                cell = new PdfPCell(new Phrase(list[i].SClientName, fontForCells));
+                cell = new PdfPCell(new Phrase(list[i].SSClientFIO, fontForCells));
                 table.AddCell(cell);
                 cell = new PdfPCell(new Phrase(list[i].DateCreate, fontForCells));
                 table.AddCell(cell);

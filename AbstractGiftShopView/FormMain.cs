@@ -176,5 +176,10 @@ namespace AbstractGiftShopView
             }
         }
 
+        private void ПисьмаToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var form = new FormMails();
+            form.ShowDialog();
+        }
     }
 }
