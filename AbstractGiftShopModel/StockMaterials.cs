@@ -1,4 +1,4 @@
-﻿namespace AbstractGiftShopModel
+namespace AbstractGiftShopModel
 {
     /// <summary>
     /// Сколько материалов хранится на складе
@@ -13,4 +13,4 @@
         public virtual Materials Materials { get; set; }
 
     }
-}
+}
