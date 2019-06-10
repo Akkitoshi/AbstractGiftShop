@@ -11,5 +11,6 @@ namespace AbstractGiftShopServiceDAL.Interfaces
         void TakeOrderInWork(SOrderBindingModel model);
         void FinishOrder(SOrderBindingModel model);
         void PayOrder(SOrderBindingModel model);
+        void PutMaterialsOnStock(StockMaterialsBindingModel model);
     }
 }

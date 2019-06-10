@@ -9,16 +9,18 @@
     <Grid Margin="0,0,28.83,-0.264">
         <Menu x:Name="menu" HorizontalAlignment="Left" Height="22" VerticalAlignment="Top" Width="1047" Margin="10,0,0,0">
             <MenuItem Header="Справочники" Height="22" Width="137">
-                <MenuItem Header="Клиенты" HorizontalAlignment="Left" Height="28" Width="135" Margin="0,0,-21,0" Click="клиентыToolStripMenuItem_Click"/>
+                <MenuItem Header="Клиенты" HorizontalAlignment="Left" Height="28" Width="152" Margin="0,0,-11.623,0" Click="клиентыToolStripMenuItem_Click"/>
                 <MenuItem Header="Материалы" HorizontalAlignment="Left" Height="24" Width="158" Margin="0,0,-18,0" Click="материалыToolStripMenuItem_Click"/>
                 <MenuItem Header="Подарки" HorizontalAlignment="Left" Height="28" Width="135" Margin="0,0,-21,0" Click="подаркиToolStripMenuItem_Click"/>
+                <MenuItem Header="Склады" HorizontalAlignment="Left" Height="28" Width="135" Margin="0,0,-21,0" Click="складыToolStripMenuItem_Click"/>
             </MenuItem>
+            <MenuItem Header="Пополнить склад" Height="22" Width="135" Click="пополнитьСкладToolStripMenuItem_Click"/>
         </Menu>
         <DataGrid x:Name="dataGridViewMain" HorizontalAlignment="Left" Height="272" Margin="0,27,0,0" VerticalAlignment="Top" Width="561" IsReadOnly="True"/>
-        <Button x:Name="buttonCreateSOrder" Content="Создать заказ" HorizontalAlignment="Left" Margin="587,57,0,0" VerticalAlignment="Top" Width="138" Height="28" Click="buttonCreateSOrder_Click"/>
-        <Button x:Name="buttonTakeSOrderInWork" Content="Отдать на выполнение" HorizontalAlignment="Left" Margin="587,108,0,0" VerticalAlignment="Top" Width="138" Height="28" Click="buttonTakeSOrderInWork_Click"/>
-        <Button x:Name="buttonSOrderReady" Content="Заказ готов" HorizontalAlignment="Left" Margin="587,160,0,0" VerticalAlignment="Top" Width="138" Height="28" Click="buttonSOrderReady_Click"/>
-        <Button x:Name="buttonPaySOrder" Content="Заказ оплачен" HorizontalAlignment="Left" Margin="587,210,0,0" VerticalAlignment="Top" Width="138" Height="28" Click="buttonPaySOrder_Click"/>
+        <Button x:Name="buttonCreateOrder" Content="Создать заказ" HorizontalAlignment="Left" Margin="587,57,0,0" VerticalAlignment="Top" Width="138" Height="28" Click="buttonCreateOrder_Click"/>
+        <Button x:Name="buttonTakeOrderInWork" Content="Отдать на выполнение" HorizontalAlignment="Left" Margin="587,108,0,0" VerticalAlignment="Top" Width="138" Height="28" Click="buttonTakeOrderInWork_Click"/>
+        <Button x:Name="buttonOrderReady" Content="Заказ готов" HorizontalAlignment="Left" Margin="587,160,0,0" VerticalAlignment="Top" Width="138" Height="28" Click="buttonOrderReady_Click"/>
+        <Button x:Name="buttonPayOrder" Content="Заказ оплачен" HorizontalAlignment="Left" Margin="587,210,0,0" VerticalAlignment="Top" Width="138" Height="28" Click="buttonPayOrder_Click"/>
         <Button x:Name="buttonRef" Content="Обновить список" HorizontalAlignment="Left" Margin="587,257,0,0" VerticalAlignment="Top" Width="138" Height="28" Click="buttonRef_Click" RenderTransformOrigin="-1.791,1.297"/>
 
     </Grid>

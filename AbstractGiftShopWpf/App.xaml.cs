@@ -20,6 +20,7 @@ namespace AbstractGiftShopWPF
             container.RegisterType<IMaterialsService, MaterialsServiceList>();
             container.RegisterType<IGiftService, GiftServiceList>();
             container.RegisterType<ISClientService, ClientServiceList>();
+            container.RegisterType<ISStockService, StockServiceList>();
             var mainWindow = container.Resolve<MainWindow>();
             Application.Current.MainWindow = mainWindow;
             Application.Current.MainWindow.Show();
