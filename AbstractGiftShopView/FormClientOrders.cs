@@ -1,4 +1,4 @@
-﻿using AbstractGiftShopServiceDAL.BindingModels;
+using AbstractGiftShopServiceDAL.BindingModels;
 using AbstractGiftShopServiceDAL.ViewModel;
 using Microsoft.Reporting.WinForms;
 using System;
@@ -16,17 +16,14 @@ namespace AbstractGiftShopView
         {
             if (dateTimePickerFrom.Value.Date >= dateTimePickerTo.Value.Date)
             {
-                MessageBox.Show("Дата начала должна быть меньше даты окончания",
-               "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Дата начала должна быть меньше даты окончания", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             try
             {
                 ReportParameter parameter = new ReportParameter("ReportParameterPeriod",
-                "c " +
-               dateTimePickerFrom.Value.ToShortDateString() +
-                " по " +
-               dateTimePickerTo.Value.ToShortDateString());
+                "c " + dateTimePickerFrom.Value.ToShortDateString() +
+                " по " + dateTimePickerTo.Value.ToShortDateString());
                 reportViewer.LocalReport.SetParameters(parameter);
                 List<SClientOrdersModel> response =
                APIClient.PostRequest<ReportBindingModel,
@@ -42,16 +39,14 @@ namespace AbstractGiftShopView
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK,
-               MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         private void buttonToPdf_Click(object sender, EventArgs e)
         {
             if (dateTimePickerFrom.Value.Date >= dateTimePickerTo.Value.Date)
             {
-                MessageBox.Show("Дата начала должна быть меньше даты окончания",
-               "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Дата начала должна быть меньше даты окончания", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             SaveFileDialog sfd = new SaveFileDialog
@@ -71,13 +66,13 @@ namespace AbstractGiftShopView
                    });
                     MessageBox.Show("Выполнено", "Успех", MessageBoxButtons.OK,
                    MessageBoxIcon.Information);
+
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK,
-                   MessageBoxIcon.Error);
+                    MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
-    }
+}
 }
