@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28010.2016
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28803.202
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AbstractGiftShopModel", "AbstractGiftShopModel\AbstractGiftShopModel.csproj", "{8F783248-6123-48AA-AAA3-027C7E89CB89}"
 EndProject
@@ -10,6 +10,11 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AbstractGiftShopServiceImplementList", "AbstractGiftShopServiceImplementList\AbstractGiftShopServiceImplementList.csproj", "{AFF88F55-C383-45D7-8B49-4D734BA415F3}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AbstractGiftShopView", "AbstractGiftShopView\AbstractGiftShopView.csproj", "{51285BDD-E463-42DD-AE87-81FAB52DB5EE}"
+	ProjectSection(ProjectDependencies) = postProject
+		{D61F2172-3E9C-46FB-8458-F21F474C04BF} = {D61F2172-3E9C-46FB-8458-F21F474C04BF}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AbstractGiftShopWPF", "AbstractGiftShopWpf\AbstractGiftShopWPF.csproj", "{D61F2172-3E9C-46FB-8458-F21F474C04BF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +38,10 @@ Global
 		{51285BDD-E463-42DD-AE87-81FAB52DB5EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{51285BDD-E463-42DD-AE87-81FAB52DB5EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{51285BDD-E463-42DD-AE87-81FAB52DB5EE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D61F2172-3E9C-46FB-8458-F21F474C04BF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D61F2172-3E9C-46FB-8458-F21F474C04BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D61F2172-3E9C-46FB-8458-F21F474C04BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D61F2172-3E9C-46FB-8458-F21F474C04BF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
