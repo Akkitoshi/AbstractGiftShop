@@ -1,7 +1,6 @@
 using AbstractGiftShopServiceDAL.Interfaces;
 using AbstractGiftShopServiceImplementDataBase;
 using AbstractGiftShopServiceImplementDataBase.Implementations;
-using AbstractShopServiceImplementDataBase.Implementations;
 using System;
 using System.Data.Entity;
 using Unity;
@@ -62,7 +61,8 @@ HierarchicalLifetimeManager());
            HierarchicalLifetimeManager());
             container.RegisterType<IReportService, ImplemeneterServiceDB>(new
            HierarchicalLifetimeManager());
-
+            container.RegisterType<IMessageInfoService, MessageInfoServiceDB>(new
+         HierarchicalLifetimeManager());
         }
     }
 }

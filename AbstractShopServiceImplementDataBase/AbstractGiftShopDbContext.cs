@@ -5,7 +5,7 @@ namespace AbstractGiftShopServiceImplementDataBase
 {
     public class AbstractGiftShopDbContext : DbContext
     {
-        public AbstractGiftShopDbContext() : base("AbstractGiftShopDatabase1")
+        public AbstractGiftShopDbContext() : base("AbstractGiftShopDatabase__")
         {
             //настройки конфигурации для entity
             Configuration.ProxyCreationEnabled = false;
@@ -21,5 +21,6 @@ namespace AbstractGiftShopServiceImplementDataBase
         public virtual DbSet<SStock> Stocks { get; set; }
         public virtual DbSet<StockMaterials> StockMaterialss { get; set; }
         public virtual DbSet<Implementer> Implementers { get; set; }
+        public virtual DbSet<MessageInfo> MessageInfos { get; set; }
     }
 }
