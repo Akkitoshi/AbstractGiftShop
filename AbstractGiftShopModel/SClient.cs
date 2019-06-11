@@ -17,4 +17,4 @@ namespace AbstractGiftShopModel
         [ForeignKey("SClientId")]
         public virtual List<SOrder> SOrders { get; set; }
     }
-}
+}

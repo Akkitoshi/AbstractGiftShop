@@ -7,7 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace AbstractShopServiceImplementDataBase.Implementations
+namespace AbstractGiftShopServiceImplementDataBase.Implementations
 {
     public class GiftServiceDB : IGiftService
     {

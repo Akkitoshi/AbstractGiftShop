@@ -1,7 +1,8 @@
 ﻿using AbstractGiftShopServiceDAL.Interfaces;
 using AbstractGiftShopServiceImplementDataBase;
+using AbstractGiftShopServiceImplementDataBase.Implementations;
 using AbstractGiftShopView;
-using AbstractShopServiceImplementDataBase.Implementations;
+using AbstractGiftShopServiceImplementDataBase.Implementations;
 using System;
 using System.Data.Entity;
 using System.Windows.Forms;
