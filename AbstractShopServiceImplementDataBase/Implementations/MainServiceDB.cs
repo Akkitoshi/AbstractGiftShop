@@ -9,7 +9,7 @@ using System.Data.Entity;
 using System.Linq;
 using AbstractGiftShopServiceImplementDataBase;
 
-namespace AbstractShopServiceImplementDataBase.Implementations
+namespace AbstractGiftShopServiceImplementDataBase.Implementations
 {
     public class MainServiceDB : IMainService
     {

@@ -16,4 +16,4 @@ namespace AbstractGiftShopModel
         public decimal Price { get; set; }
         public virtual List<SOrder> SOrders { get; set; }
     }
-}
+}

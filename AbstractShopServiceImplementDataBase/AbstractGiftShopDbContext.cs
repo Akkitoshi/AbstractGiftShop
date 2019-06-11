@@ -5,7 +5,7 @@ namespace AbstractGiftShopServiceImplementDataBase
 {
     public class AbstractGiftShopDbContext : DbContext
     {
-        public AbstractGiftShopDbContext() : base("AbstractGiftShopDatabase")
+        public AbstractGiftShopDbContext() : base("AbstractGiftShopDatabaseWPFF")
         {
             //настройки конфигурации для entity
             Configuration.ProxyCreationEnabled = false;

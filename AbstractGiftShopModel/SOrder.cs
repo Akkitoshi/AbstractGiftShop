@@ -28,4 +28,3 @@ namespace AbstractGiftShopModel
         public virtual Gift Gift { get; set; }
     }
 }
-

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28010.2016
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28803.202
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AbstractGiftShopModel", "AbstractGiftShopModel\AbstractGiftShopModel.csproj", "{8F783248-6123-48AA-AAA3-027C7E89CB89}"
 EndProject
@@ -12,6 +12,12 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AbstractGiftShopView", "AbstractGiftShopView\AbstractGiftShopView.csproj", "{51285BDD-E463-42DD-AE87-81FAB52DB5EE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AbstractGiftShopServiceImplementDataBase", "AbstractShopServiceImplementDataBase\AbstractGiftShopServiceImplementDataBase.csproj", "{7D832076-B0E3-43FB-BCF5-7479AEB82E74}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AbstractGiftShopWPF", "AbstractGiftShopWPF\AbstractGiftShopWPF.csproj", "{1CC57C7D-1C84-4213-9F6D-F03B1D4E1E0C}"
+	ProjectSection(ProjectDependencies) = postProject
+		{8F783248-6123-48AA-AAA3-027C7E89CB89} = {8F783248-6123-48AA-AAA3-027C7E89CB89}
+		{7D832076-B0E3-43FB-BCF5-7479AEB82E74} = {7D832076-B0E3-43FB-BCF5-7479AEB82E74}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +45,10 @@ Global
 		{7D832076-B0E3-43FB-BCF5-7479AEB82E74}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7D832076-B0E3-43FB-BCF5-7479AEB82E74}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7D832076-B0E3-43FB-BCF5-7479AEB82E74}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1CC57C7D-1C84-4213-9F6D-F03B1D4E1E0C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1CC57C7D-1C84-4213-9F6D-F03B1D4E1E0C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1CC57C7D-1C84-4213-9F6D-F03B1D4E1E0C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1CC57C7D-1C84-4213-9F6D-F03B1D4E1E0C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

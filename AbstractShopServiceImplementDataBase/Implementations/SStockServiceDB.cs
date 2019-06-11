@@ -6,10 +6,8 @@ using AbstractGiftShopServiceImplementDataBase;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace AbstractShopServiceImplementDataBase.Implementations
+namespace AbstractGiftShopServiceImplementDataBase.Implementations
 {
     public class SStockServiceDB : ISStockService
     {
@@ -24,7 +22,18 @@ namespace AbstractShopServiceImplementDataBase.Implementations
            SStockViewModel
             {
                 Id = rec.Id,
-                SStockName = rec.SStockName
+                SStockName = rec.SStockName,
+                StockMaterialss = context.StockMaterialss
+            .Where(recPC => recPC.SStockId == rec.Id)
+           .Select(recPC => new StockMaterialsViewModel
+           {
+               Id = recPC.Id,
+               SStockId = recPC.SStockId,
+               MaterialsId = recPC.MaterialsId,
+               MaterialsName = recPC.Materials.MaterialsName,
+               Count = recPC.Count
+           })
+           .ToList()
             })
             .ToList();
             return result;
@@ -37,7 +46,18 @@ namespace AbstractShopServiceImplementDataBase.Implementations
                 return new SStockViewModel
                 {
                     Id = element.Id,
-                    SStockName = element.SStockName
+                    SStockName = element.SStockName,
+                    StockMaterialss = context.StockMaterialss
+    .Where(recPC => recPC.SStockId == element.Id)
+     .Select(recPC => new StockMaterialsViewModel
+     {
+         Id = recPC.Id,
+         SStockId = recPC.SStockId,
+         MaterialsId = recPC.MaterialsId,
+         MaterialsName = recPC.Materials.MaterialsName,
+         Count = recPC.Count
+     })
+    .ToList()
                 };
             }
             throw new Exception("Элемент не найден");
