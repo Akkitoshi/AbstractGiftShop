@@ -153,11 +153,7 @@
             // 
             // formClientsBindingSource
             // 
-            this.formClientsBindingSource.DataSource = typeof(AbstractgiftShopView.FormClients);
-            // 
-            // formClientsBindingSource1
-            // 
-            this.formClientsBindingSource1.DataSource = typeof(AbstractgiftShopView.FormClients);
+           // this.formClientsBindingSource.DataSource = typeof(AbstractGiftShopView.FormClients);
             // 
             // materialsBindingModelBindingSource
             // 
