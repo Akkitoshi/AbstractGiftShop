@@ -46,16 +46,21 @@
     <Compile Include="BindingModels\GiftBindingModel.cs" />
     <Compile Include="BindingModels\GiftMaterialsBindingModel.cs" />
     <Compile Include="BindingModels\SOrderBindingModel.cs" />
+    <Compile Include="BindingModels\SStockBindingModel.cs" />
+    <Compile Include="BindingModels\StockMaterialsBindingModel.cs" />
     <Compile Include="Interfaces\ISClientService.cs" />
     <Compile Include="Interfaces\IMainService.cs" />
     <Compile Include="Interfaces\IGiftService.cs" />
     <Compile Include="Interfaces\IMaterialsService.cs" />
+    <Compile Include="Interfaces\ISStockService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModel\SClientViewModel.cs" />
     <Compile Include="ViewModel\GiftMaterialsViewModel.cs" />
     <Compile Include="ViewModel\GiftViewModel.cs" />
     <Compile Include="ViewModel\MaterialsViewModel.cs" />
     <Compile Include="ViewModel\SOrderViewModel.cs" />
+    <Compile Include="ViewModel\SStockViewModel.cs" />
+    <Compile Include="ViewModel\StockMaterialsViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AbstractGiftShopModel\AbstractGiftShopModel.csproj">

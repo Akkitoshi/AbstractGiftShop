@@ -5,6 +5,7 @@ using AbstractGiftShopServiceDAL.ViewModels;
 using AbstractGiftShopServiceImplement;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace AbstractShopServiceImplementList.Implementations
 {
@@ -139,6 +140,27 @@ namespace AbstractShopServiceImplementList.Implementations
                 throw new Exception("Заказ не в статусе \"Готов\"");
             }
             source.SOrders[index].Status = SOrderStatus.Оплачен;
+        }
+        public void PutMaterialsOnStock(StockMaterialsBindingModel model)
+        {
+            StockMaterials element = source.StockMaterialss.FirstOrDefault(rec =>
+           rec.SStockId == model.SStockId && rec.MaterialsId == model.MaterialsId);
+            if (element != null)
+            {
+                element.Count += model.Count;
+            }
+            else
+            {
+                int maxId = source.StockMaterialss.Count > 0 ?
+               source.StockMaterialss.Max(rec => rec.Id) : 0;
+                source.StockMaterialss.Add(new StockMaterials
+                {
+                    Id = ++maxId,
+                    SStockId = model.SStockId,
+                    MaterialsId = model.MaterialsId,
+                    Count = model.Count
+                });
+            }
         }
     }
 }

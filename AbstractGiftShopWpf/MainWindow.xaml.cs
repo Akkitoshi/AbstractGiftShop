@@ -48,13 +48,13 @@ namespace AbstractGiftShopWPF
 
         private void клиентыToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var form = Container.Resolve<WindowClients>();
+            var form = Container.Resolve<WindowClient>();
             form.ShowDialog();
         }
 
         private void материалыToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var form = Container.Resolve<WindowMaterialss>();
+            var form = Container.Resolve<WindowMaterials>();
             form.ShowDialog();
         }
 
@@ -64,15 +64,26 @@ namespace AbstractGiftShopWPF
             form.ShowDialog();
         }
 
+        private void складыToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var form = Container.Resolve<WindowStocks>();
+            form.ShowDialog();
+        }
 
-        private void buttonCreateSOrder_Click(object sender, EventArgs e)
+        private void пополнитьСкладToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var form = Container.Resolve<WindowPutOnStock>();
+            form.ShowDialog();
+        }
+
+        private void buttonCreateOrder_Click(object sender, EventArgs e)
         {
             var form = Container.Resolve<WindowCreateSOrder>();
             form.ShowDialog();
             LoadData();
         }
 
-        private void buttonTakeSOrderInWork_Click(object sender, EventArgs e)
+        private void buttonTakeOrderInWork_Click(object sender, EventArgs e)
         {
             if (dataGridViewMain.SelectedItem != null)
             {
@@ -89,7 +100,7 @@ namespace AbstractGiftShopWPF
             }
         }
 
-        private void buttonSOrderReady_Click(object sender, EventArgs e)
+        private void buttonOrderReady_Click(object sender, EventArgs e)
         {
             if (dataGridViewMain.SelectedItem != null)
             {
@@ -106,7 +117,7 @@ namespace AbstractGiftShopWPF
             }
         }
 
-        private void buttonPaySOrder_Click(object sender, EventArgs e)
+        private void buttonPayOrder_Click(object sender, EventArgs e)
         {
             if (dataGridViewMain.SelectedItem != null)
             {
